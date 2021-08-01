@@ -1,0 +1,33 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html,
+body {
+  height: 100%;
+}
+header {
+  position: relative;
+  height: 125px;
+}
+header div:first-child {
+  position: absolute;
+  width: 54.62px;
+  height: 95px;
+  left: 194px;
+  top: 20px;
+}
+header div:nth-of-type(2) {
+  position: absolute;
+  width: 678px;
+  height: 92px;
+  left: 341px;
+  top: 43px;
+}
+header div:nth-of-type(3) {
+  position: absolute;
+  right: 12.62%;
+  top: 50px;
+  cursor: pointer;
+}

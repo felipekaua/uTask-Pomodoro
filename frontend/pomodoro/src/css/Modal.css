@@ -1,0 +1,119 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: Ubuntu;
+}
+
+@font-face {
+  font-family: Ubuntu;
+  src: url('./../assets/fonts/Ubuntu-Regular.ttf');
+}
+
+html,
+body {
+  height: 100%;
+}
+
+.modalBackground {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  top: 0;
+  left: 0;
+  position: fixed;
+  display: none;
+}
+
+.modalWindow {
+  width: 568px;
+  height: 359px;
+  background-color: white;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 15px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
+  border: 1px solid #767676;
+  text-align: center;
+}
+
+.modalWindow h1 {
+  border-bottom: 2px solid #b6b6b6;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 36px;
+  padding: 20px;
+  width: 80%;
+  display: inline-block;
+}
+
+.modalWindow h3 {
+  width: 80%;
+  text-align: left;
+  display: inline-block;
+  margin-top: 52px;
+  font-weight: lighter;
+  font-size: 22px;
+  color: #282828;
+}
+
+.timerBox {
+  width: 133px;
+  display: inline-block;
+  margin: 15px;
+  color: #767676;
+}
+.timerBox > p {
+  margin-bottom: 10px;
+}
+.timer {
+  width: 100%;
+  height: 45px;
+  border: 1px solid #d9d9d9;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 15px;
+  text-align: left;
+  position: relative;
+}
+.timer p {
+  width: 80%;
+  display: inline-block;
+  text-align: left;
+  line-height: 45px;
+  padding: 0 15px;
+}
+.timer .img {
+  width: 10%;
+  position: absolute;
+  top: 2px;
+  right: 8px;
+  display: inline-block;
+}
+
+.img img {
+  cursor: pointer;
+}
+
+.modalWindow button {
+  width: 105px;
+  height: 34px;
+  margin: 20px;
+  float: right;
+  margin-right: 60px;
+  border-radius: 10px;
+  font-size: 22px;
+  background-color: #3071d9;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.modalWindow button:active {
+  /*pseudp-classe*/
+  background-color: white;
+  border: 2px solid #3071d9;
+  color: #3071d9;
+  font-size: 22px;
+}
