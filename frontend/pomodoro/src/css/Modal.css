@@ -26,6 +26,7 @@ body {
 }
 
 .modalWindow {
+  user-select: none;
   width: 568px;
   height: 359px;
   background-color: white;

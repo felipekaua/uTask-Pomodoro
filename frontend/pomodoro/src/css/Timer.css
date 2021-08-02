@@ -1,0 +1,51 @@
+* {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+  }
+
+  .Timer{
+   display: grid;
+   align-items: center;
+ }
+ .Timer >*{
+   grid-column-start: 1;
+   grid-row-start: 1;
+ }
+ .Timer img{
+   user-select: none;
+   margin:auto;
+   margin-top: 40px;
+   width: 250px;
+   opacity: 25%;
+ }
+ .Timer h1{
+   user-select: none; 
+   margin: auto;
+   text-align: center;
+   padding-top: 100px;
+ }
+ .Timer button{
+   user-select: none;
+   display: block;
+   z-index: +2;
+   margin: auto;
+   margin-top: 230px;
+
+   padding: 1px;
+   padding-left: 30px;
+   padding-right: 30px;
+
+   border-radius: 10px;
+   border-color: red;
+   background-color: red;
+   font-size: 24px;
+   color: white;
+ }
+ .Timer button:active{
+   background-color: white; 
+   color: red;
+ }
+ .Timer button:hover{
+   cursor: pointer;
+ }
