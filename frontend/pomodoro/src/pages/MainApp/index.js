@@ -9,10 +9,11 @@ import tomate from './../../assets/tomateVermelho.png'
         return(
             <>
             <div className="Timer">
+                <h1>Pomodoro</h1>
+                <h2>00:00</h2>
                 <button onClick={startTimer}>Start</button>
-                <img src={tomate} alt="tomate"></img>
-                <h1>00:00</h1>
             </div>
+                
             </>
         );
     }
