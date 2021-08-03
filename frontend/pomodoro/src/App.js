@@ -1,5 +1,16 @@
+import React from 'react';
+
+import {BrowserRouter} from 'react-router-dom';
+
+import Routes from './routes';
+
 function App() {
-  return <h1>Se compilar já tá valendo</h1>;
+  return (
+    <BrowserRouter>
+      <Routes/>
+    </BrowserRouter>
+
+  );
 }
 
 export default App;
