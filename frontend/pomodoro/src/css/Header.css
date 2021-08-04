@@ -8,6 +8,7 @@ body {
   height: 100%;
 }
 header {
+  user-select: none;
   position: relative;
   height: 125px;
 }
