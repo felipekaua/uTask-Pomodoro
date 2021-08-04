@@ -1,11 +1,12 @@
 import React from 'react'
-import './../css/Form.css'
+import './../css/Cadastro.css'
 import {Link} from 'react-router-dom';
 //import api from '../services/api';
 
-const Form = (props) => {
+const Cadastroform = (props) => {
     const [user, setUser] = React.useState("");
     const [pw, setPw] = React.useState("");
+    const [Confirmepw, setConfirmePw] = React.useState("");
 
     function handleUserChange(e){
         setUser(`${e.target.value}`)
@@ -13,12 +14,15 @@ const Form = (props) => {
     function handlePwChange(e){
         setPw(`${e.target.value}`)
     }
+    function handleConfirmePwChange(e){
+        setConfirmePw(`${e.target.value}`)
+    }
 
 //HTML
     return (
         <form>
 
-            <div className="inputLogin">
+            <div>
 
                 <h1> 
                     {props.h1}
@@ -30,7 +34,7 @@ const Form = (props) => {
 
                 </label>
 
-                <input className = "caixaLogin" onChange={handleUserChange} value={user} placeholder="   Seu login..."/>
+                <input className = "caixaLogin" onChange={handleUserChange} value={user} placeholder="   Insira um login"/>
 
                 <label className = "labelSenha">
 
@@ -38,9 +42,16 @@ const Form = (props) => {
 
                 </label>
 
-                <input className = "caixaSenha" onChange={handlePwChange} value={pw} placeholder="   Sua senha..."/>
+                <input className = "caixaSenha" onChange={handlePwChange} value={pw} placeholder="   Insira uma senha"/>
 
-        
+                <label className = "labelConfirmeSenha">
+
+                    {props.label3}
+
+                </label>
+
+                <input className = "caixaConfirmeSenha" onChange={handleConfirmePwChange} value={Confirmepw} />
+
                 <button className="button" type = "submit">
 
                     {props.btnText}
@@ -53,7 +64,7 @@ const Form = (props) => {
                     
                 </p>
 
-                <Link className = "linkcadastrar" to = "/cadastro">
+                <Link className = "linkcadastrar" to = "/">
 
                     {props.btnText2}
 
@@ -65,4 +76,4 @@ const Form = (props) => {
     )
 }
 
-export default Form;
+export default Cadastroform;
