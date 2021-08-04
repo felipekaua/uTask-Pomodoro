@@ -109,6 +109,7 @@ body {
   border: none;
   color: white;
   cursor: pointer;
+  text-align: center;
 }
 
 .modalWindow button:active {

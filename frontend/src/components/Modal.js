@@ -1,56 +1,46 @@
 import React from 'react';
-import { useState } from 'react';
 import './../css/Modal.css';
 import blackArrowUp from './../assets/blackArrowUp.png';
 import blackArrowDown from './../assets/blackArrowDown.png';
 
-function Modal(props){
+function Modal(props) {
   function diminuirTempo() {
-    if (props.pomodoroLength === 1){
+    if (props.pomodoroLength === 1) {
       return;
     }
-
     props.diminuirM();
-
   }
   function aumentarTempo() {
-    if(props.pomodoroLength === 60){
+    if (props.pomodoroLength === 60) {
       return;
     }
-
     props.aumentarM();
   }
   function diminuirTempoDC() {
-    if (props.ShortRestLength === 1){
+    if (props.ShortRestLength === 1) {
       return;
     }
-
     props.diminuirDC();
-
   }
   function aumentarTempoDC() {
-    if(props.ShortRestLength === 60){
+    if (props.ShortRestLength === 60) {
       return;
     }
-
     props.aumentarDC();
   }
   function diminuirTempoDL() {
-    if (props.LongRestLength === 1){
+    if (props.LongRestLength === 1) {
       return;
     }
-
     props.diminuirDL();
-
   }
   function aumentarTempoDL() {
-    if(props.LongRestLength === 60){
+    if (props.LongRestLength === 60) {
       return;
     }
-
     props.aumentarDL();
   }
-  
+
   function fecharModal() {
     const modal = document.getElementsByClassName('modalBackground')[0];
     window.onclick = (event) => {
@@ -123,11 +113,9 @@ function Modal(props){
             </div>
           </div>
         </div>
-
         <button type="button">Salvar</button>
       </div>
     </div> /*modalBackground*/
   );
-};
-
+}
 export default Modal;
