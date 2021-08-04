@@ -57,6 +57,34 @@ function Modal(props){
       if (event.target === modal) modal.style.display = 'none';
     };
   }
+
+  // ===============================================COOKIES=====================================================
+  /*function salvarCookies() {
+    let data = new Date();
+    let minutos = 1000;
+    data.setTime(data.getTime() + minutos * 1000 * 60);
+
+    document.cookie = `tempo=${tempo}; expires=${data.toUTCString()}`;
+    document.cookie = `tempo1=${tempo1}; expires=${data.toUTCString()}`;
+    document.cookie = `tempo2=${tempo2}; expires=${data.toUTCString()}`;
+    // console.log(document.cookie);
+    console.log(tempo);
+    refresh();
+  }
+
+  function refresh() {
+    var cookie;
+    if (document.cookie) {
+      cookie = document.cookie.split(';');
+      setTempo(+cookie[0].split('=')[1]);
+      setTempo1(+cookie[1].split('=')[1]);
+      setTempo2(+cookie[2].split('=')[1]);
+      console.log(cookie);
+    }
+  }
+  window.onload = refresh;
+  // ====================================================================================================*/
+  /*onClick={salvarCookies}*/
   return (
     <div className="modalBackground" onClick={fecharModal}>
       <div className="modalWindow">
