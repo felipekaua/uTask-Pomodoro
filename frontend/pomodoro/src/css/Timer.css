@@ -14,16 +14,38 @@
    width: 100%;
    padding: 50px;
  }
- .Timer h1{
+ .TimerSb{
+  margin: auto;
+   margin-top: 25px;
+   align-items: center;
+   background-image: url('./../assets/tomateAzul.png');
+   background-repeat: no-repeat;
+   background-size: contain;
+   background-position: center;
+   width: 100%;
+   padding: 50px;
+ }
+ .TimerLb{
+  margin: auto;
+   margin-top: 25px;
+   align-items: center;
+   background-image: url('./../assets/tomateAzulEscuro.png');
+   background-repeat: no-repeat;
+   background-size: contain;
+   background-position: center;
+   width: 100%;
+   padding: 50px;
+ }
+ h1{
   user-select: none;
-   padding-bottom: 60px;
+   padding-bottom: 50px;
    font-size: 14px;
    text-align: center;
    color: white;
  }
- .Timer h2{
+ h2{
   user-select: none;
-  font-size: 32px;
+  font-size: 36px;
   text-align: center;
 }
 button{
@@ -49,4 +71,18 @@ button{
  }
  button:hover{
    cursor: pointer;
+ }
+ .startButton{
+   display: block;
+ }
+ .stopButton{
+   position: relative;
+   display: none;
+ }
+
+ .Psbreak{
+  display: block;
+ }
+ .Lbreak{
+  display: none;
  }

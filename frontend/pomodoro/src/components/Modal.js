@@ -1,5 +1,4 @@
 import React from 'react';
-import { useState } from 'react';
 import './../css/Modal.css';
 import blackArrowUp from './../assets/blackArrowUp.png';
 import blackArrowDown from './../assets/blackArrowDown.png';
