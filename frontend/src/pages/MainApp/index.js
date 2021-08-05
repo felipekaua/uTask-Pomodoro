@@ -1,6 +1,7 @@
 import React from 'react';
 import './../../css/Timer.css';
 import Modal from './../../components/Modal';
+import './../../css/Modal.css';
 import Timer from './../../components/Timer';
 
     export default class MainApp extends React.Component{
@@ -8,11 +9,12 @@ import Timer from './../../components/Timer';
             super();
 
             this.state = {
-                breakLength: 5,
+                pomodoroLength: 15,
                 ShortRestLength: 5,
-                LongRestLength: 10,
-                pomodoroLength: 25,
+                LongRestLength: 15,
                 timerMinute: 0,
+                isPlay: false,
+                isLong: 0,
             };
 
             this.aumentarTempo = this.aumentarTempo.bind(this);
@@ -22,7 +24,9 @@ import Timer from './../../components/Timer';
             this.aumentarTempoDL = this.aumentarTempoDL.bind(this);
             this.diminuirTempoDL = this.diminuirTempoDL.bind(this);
             this.onToggleInterval = this.onToggleInterval.bind(this);
-            this.onUpdateTimerMinute = this.onUpdateTimerMinute.bind(this);
+            this.decreaseTimerMinute = this.decreaseTimerMinute.bind(this);
+            this.setTimer = this.setTimer.bind(this);
+            this.onPlayTimer = this.onPlayTimer.bind(this);
         }
 
         aumentarTempo(){
@@ -32,6 +36,7 @@ import Timer from './../../components/Timer';
                     timerMinute: prevState.pomodoroLength + 1,
                 }
             })
+            this.setTimer();
         }
         diminuirTempo(){
             this.setState((prevState)=>{
@@ -69,8 +74,12 @@ import Timer from './../../components/Timer';
                 }
             })
         }
+
+        setTimer(){
+            this.state.timerMinute = this.state.pomodoroLength;
+        }
         
-        onUpdateTimerMinute(){
+        decreaseTimerMinute(){
             this.setState((prevState)=>{
                 return{
                     timerMinute:prevState.timerMinute-1,
@@ -79,37 +88,72 @@ import Timer from './../../components/Timer';
         }
 
         onToggleInterval(isSession){
-            // const counter;
             if(isSession){
                 this.setState({
-                    timerMinute: this.pomodoroLength
-            })}
-            // else if(isSession===false && counter <=2) {
-            //     this.setState({
-            //         timerMinute: ShortRestLength
-            //     })
-            //     counter++;
-            // }
+                    timerMinute: this.state.pomodoroLength,
+            })
+            const background = document.getElementById('timerId');
+            if(background.classList.contains('TimerSb')){
+                background.classList.remove('TimerSb');
+                background.classList.add('Timer')
+            }else if(background.classList.contains('TimerLb')){
+                background.classList.remove('TimerLb')
+                background.classList.add('Timer')
+            }else{}
+        }
+            else if (isSession===false && this.state.isLong < 3){
+                this.setState({
+                    timerMinute: this.state.ShortRestLength,
+                    isLong: this.state.isLong + 1,
+                })
+            const background = document.getElementById('timerId');
+            if(background.classList.contains('Timer')){
+                background.classList.remove('Timer');
+                background.classList.add('TimerSb')
+            }else if(background.classList.contains('TimerLb')){
+                background.classList.remove('TimerLb')
+                background.classList.add('TimerSb')
+            }else{}
+            }
             else{
                 this.setState({
-                    timerMinute: this.LongRestLength
+                    timerMinute: this.state.LongRestLength,
+                    isLong: 0,
                 })
-                // counter = 0;
+            const background = document.getElementById('timerId');
+            if(background.classList.contains('Timer')){
+                background.classList.remove('Timer');
+                background.classList.add('TimerLb')
+            }else if(background.classList.contains('TimerSb')){
+                background.classList.remove('TimerSb')
+                background.classList.add('TimerLb')
+            }else{}
             }
         }
 
-
-
+        onPlayTimer(isPlay){
+            this.setState({
+                isPlay: isPlay
+            })
+            if(isPlay===true){
+                const eng = document.getElementsByClassName('engrenagem')[0];
+                eng.style.visibility = "hidden"
+            }
+        }
 
         render(){
            return (<>
-            <div className="Timer">
+            <div className="Timer" id="timerId">
+                
                 <Timer 
                 timerMinute={this.state.timerMinute}
-                updateTimerMinute={this.onUpdateTimerMinute}
+                decreaseTimerMinute={this.decreaseTimerMinute}
                 toggleInterval={this.onToggleInterval}
+                setTimer={this.setTimer}
+                onPlayTimer={this.onPlayTimer}
+                isLong={this.state.isLong}
                 />
-                <button>Start</button>
+                
             </div>
                 <Modal 
                 pomodoroLength={this.state.pomodoroLength}
@@ -123,6 +167,7 @@ import Timer from './../../components/Timer';
                 LongRestLength={this.state.LongRestLength}
                 aumentarDL={this.aumentarTempoDL}
                 diminuirDL={this.diminuirTempoDL}
+
                 />
             </>); 
         }
