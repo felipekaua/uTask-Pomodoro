@@ -1,0 +1,51 @@
+span.message {
+  display: flex;
+  align-items: center;
+  justify-content: initial;
+  flex-direction: column;
+  width: 210px;
+  height: 145px;
+  border-radius: 20px;
+  padding: 12px 35px;
+  position: absolute;
+  bottom: -40px;
+  left: 6em;
+  z-index: 999;
+  word-wrap: break-word;
+  text-align: center;
+  color: #4C4C4C;
+  background: rgba(34, 110, 216, 0.15);
+  animation: inAnimation 450ms ease-in;
+}
+
+span.message.error {
+  background: rgba(207, 37, 0, 0.15);
+}
+
+span.message.success {
+  background: rgba(54, 198, 72, 0.15);
+}
+
+span.message h4 {
+  margin-bottom: 20px;
+}
+
+@keyframes inAnimation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes outAnimation {
+  0% {
+    opacity: 1;
+    max-height: 600px;
+  }
+  100% {
+    opacity: 0;
+    max-height: 0px;
+  }
+}
