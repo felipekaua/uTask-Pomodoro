@@ -6,6 +6,7 @@ import Message from './Message';
 
 import './../css/Form.css'
 
+
 const Form = (props) => {
     const history = useHistory();
 
@@ -49,6 +50,7 @@ const Form = (props) => {
         return true;
     }
 
+
 //HTML
     return (
         <form onSubmit={handleSubmit}>
@@ -73,9 +75,8 @@ const Form = (props) => {
 
                 </label>
 
-                <input className = "caixaSenha" onChange={handlePwChange} value={pw} placeholder="   Sua senha..."/>
+                <input className = "caixaSenha" type = "password" onChange={handlePwChange} value={pw} placeholder="   Sua senha..."/>
 
-        
                 <button className="button" type = "submit">
 
                     {props.btnText}
@@ -102,6 +103,8 @@ const Form = (props) => {
 
         </form>
     )
+
+
 }
 
 export default Form;

@@ -99,7 +99,7 @@ form{
     outline: 0;
 }
 
-.button{
+.button:disabled{
 
     display: flex;
     align-items: center;
@@ -121,7 +121,29 @@ form{
     line-height: 25px;
     letter-spacing: 0.038em;
 
-    cursor: pointer;
+}
+
+.button:enabled{
+
+    display: flex;
+    align-items: center;
+    align-content:center;
+    justify-content: center;
+    width: 449px;
+    height: 44px;
+    margin-top: 30px;
+
+    background:  #3071D9;
+    border-radius: 10px;
+    border-color: #3071D9;
+    
+    font-family: Ubuntu;
+    color:#FFFFFF;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 25px;
+    letter-spacing: 0.038em;
 
 }
 
