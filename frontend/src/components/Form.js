@@ -1,11 +1,19 @@
-import React from 'react'
-import './../css/Form.css'
-import {Link} from 'react-router-dom';
+import React, {useState} from 'react';
+import {Link, useHistory} from 'react-router-dom';
+import Message from './Message';
+
 //import api from '../services/api';
 
+import './../css/Form.css'
+
 const Form = (props) => {
+    const history = useHistory();
+
     const [user, setUser] = React.useState("");
     const [pw, setPw] = React.useState("");
+
+    const [error, setError] = useState(false);
+    const [success, setSuccess] = useState(false);
 
     function handleUserChange(e){
         setUser(`${e.target.value}`)
@@ -14,9 +22,36 @@ const Form = (props) => {
         setPw(`${e.target.value}`)
     }
 
+    function handleSubmit(e) {
+        e.preventDefault();
+
+        setError(false);
+        
+        if(!validate(user, pw)) {
+            setError(true);
+            return;
+        }
+
+        // login efetuado com sucesso
+        setSuccess(true);
+        setTimeout(() => history.push('/pomodoro'), 1500);
+    }
+
+    function validate(user, pass) {
+        if(user === 'errado')
+            return false;
+
+        if(!(user.trim()) || !(pass.trim()))
+            return false;
+        
+        console.log(user, pass);
+
+        return true;
+    }
+
 //HTML
     return (
-        <form>
+        <form onSubmit={handleSubmit}>
 
             <div className="inputLogin">
 
@@ -60,6 +95,10 @@ const Form = (props) => {
                 </Link>
 
             </div>
+
+            { error && <Message status="error" title="Oops..." msg="Ocorreu um erro, tente novamente" /> }
+
+            { success && <Message status="success" title="Wow" msg="Sucesso!" /> }
 
         </form>
     )
