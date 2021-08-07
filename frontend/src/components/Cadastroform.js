@@ -1,6 +1,9 @@
 import React from 'react'
 import './../css/Cadastro.css'
 import {Link} from 'react-router-dom';
+
+// import './buttonCadastro'
+// import './button'
 //import api from '../services/api';
 
 const Cadastroform = (props) => {
@@ -24,25 +27,25 @@ const Cadastroform = (props) => {
 
             <div>
 
-                <h1> 
-                    {props.h1}
-                </h1>
+                <h2 className = "Cadastro"> 
+                    {props.h2}
+                </h2>
 
-                <label className = "labelLogin">
+                <label className = "labelLoginCadastro">
 
                     {props.label1}
 
                 </label>
 
-                <input className = "caixaLogin" onChange={handleUserChange} value={user} placeholder="   Insira um login"/>
+                <input className = "caixaLoginCadastro" onChange={handleUserChange} value={user} placeholder="   Insira um login"/>
 
-                <label className = "labelSenha">
+                <label className = "labelSenhaCadastro">
 
                     {props.label2}
 
                 </label>
 
-                <input className = "caixaSenha" onChange={handlePwChange} value={pw} placeholder="   Insira uma senha"/>
+                <input className = "caixaSenhaCadastro" type = "password" onChange={handlePwChange} value={pw} placeholder="   Insira uma senha"/>
 
                 <label className = "labelConfirmeSenha">
 
@@ -50,21 +53,21 @@ const Cadastroform = (props) => {
 
                 </label>
 
-                <input className = "caixaConfirmeSenha" onChange={handleConfirmePwChange} value={Confirmepw} />
+                <input className = "caixaConfirmeSenha" type = "password" onChange={handleConfirmePwChange} value={Confirmepw} />
 
-                <button className="button" type = "submit">
+                <button className="buttonCadastro" type = "submit" value = "disabled" disabled>
 
                     {props.btnText}
 
                 </button>
 
-                <p className = "primeiravez">
+                <p className = "japossuiconta">
 
                     {props.p}
                     
                 </p>
 
-                <Link className = "linkcadastrar" to = "/">
+                <Link className = "linklogin" to = "/">
 
                     {props.btnText2}
 

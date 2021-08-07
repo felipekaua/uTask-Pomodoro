@@ -3,6 +3,184 @@
     src: url('./../assets/fonts/Ubuntu-Regular.ttf');
 }
 
+.Cadastro{
+
+    display: flex;
+    justify-content: center;
+   
+    font-family: Ubuntu;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 32px;
+    line-height: 37px;
+
+    letter-spacing: -0.017em;
+    
+}
+
+.labelLoginCadastro{
+   
+    display: flex;
+    margin-top: 11px;
+    padding-left: 10px;
+    
+    font-family: Ubuntu;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 21px;
+
+    letter-spacing: -0.017em;
+}
+
+.caixaLoginCadastro{
+
+    margin-top: 2px;
+    width: 449px;
+    height: 45px;
+    padding: 10px;
+
+    background: #FFFFFF;
+    border: 1px solid #D9D9D9;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 14px;
+
+    outline: 0;
+}
+
+.caixaLoginCadastro::placeholder{
+    font-style: italic;
+    font-family: Ubuntu;
+}
+
+.labelSenhaCadastro{
+ 
+    display: flex;
+    margin-top: 13px;
+    padding-left: 10px;
+    
+    font-family: Ubuntu;
+    font-style:normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 21px;
+
+    letter-spacing: -0.017em;
+
+}
+
+.caixaSenhaCadastro::placeholder{
+
+    font-style: italic;
+    font-family: Ubuntu;
+
+}
+
+.caixaSenhaCadastro{
+
+    margin-top: 2px;
+    width: 449px;
+    height: 45px;
+    padding: 10px;
+
+    background: #FFFFFF;
+    border: 1px solid #D9D9D9;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 14px;
+
+    outline: 0;
+}
+
+.buttonCadastro:disabled{
+
+    display: flex;
+    align-items: center;
+    align-content:center;
+    justify-content: center;
+    width: 449px;
+    height: 44px;
+    margin-top: 30px;
+
+    background: #AAC4EE;
+    border-radius: 10px;
+    border-color: #AAC4EE;
+    
+    font-family: Ubuntu;
+    color:#FFFFFF;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 25px;
+    letter-spacing: 0.038em;
+
+}
+
+.buttonCadastro:enabled{
+
+    display: flex;
+    align-items: center;
+    align-content:center;
+    justify-content: center;
+    width: 449px;
+    height: 44px;
+    margin-top: 30px;
+
+    background:  #3071D9;
+    border-radius: 10px;
+    border-color: #3071D9;
+    
+    font-family: Ubuntu;
+    color:#FFFFFF;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 25px;
+    letter-spacing: 0.038em;
+
+}
+
+.japossuiconta{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 68px;
+    
+    font-family: Ubuntu;
+    font-style: italic;
+    font-size: 14px;
+    line-height: 16px;
+    color: rgba(0, 0, 0, 0.7);
+
+    letter-spacing: -0.017em;
+} 
+
+.linklogin{
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-top: 3px;
+    width: 449px;
+    height: 44px;
+
+    font-family: Ubuntu;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 25px;
+    text-decoration: none;
+    letter-spacing: 0.038em;
+    color: #4C4C4C;
+
+    background: #FFFFFF;
+    border: 2px solid #4C4C4C;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+
 .caixaConfirmeSenha{
     
     display: flex;

@@ -1,12 +1,10 @@
-import React, {useState} from 'react';
-import {Link, useHistory} from 'react-router-dom';
-import Message from './Message';
+import React, {useState} from 'react'
+import './../css/Form.css'
+import {Link, useHistory} from 'react-router-dom'
+import Message from './Message'
+import './button'
 
 //import api from '../services/api';
-
-import './../css/Form.css'
-
-
 const Form = (props) => {
     const history = useHistory();
 
@@ -55,11 +53,10 @@ const Form = (props) => {
     return (
         <form onSubmit={handleSubmit}>
 
-            <div className="inputLogin">
-
-                <h1> 
-                    {props.h1}
-                </h1>
+            <div>
+                <h2 className = "Bemvindo">
+                    {props.h2}
+                </h2>
 
                 <label className = "labelLogin">
 
@@ -77,7 +74,7 @@ const Form = (props) => {
 
                 <input className = "caixaSenha" type = "password" onChange={handlePwChange} value={pw} placeholder="   Sua senha..."/>
 
-                <button className="button" type = "submit">
+                <button className="button" type = "submit"  value = "disabled" disabled>
 
                     {props.btnText}
 

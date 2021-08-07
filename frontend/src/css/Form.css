@@ -3,7 +3,7 @@
     src: url('./../assets/fonts/Ubuntu-Regular.ttf');
 }
 
-h1{
+.Bemvindo{
     display: flex;
     justify-content: center;
    

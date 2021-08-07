@@ -8,7 +8,7 @@ function Login(){
 
         <div>
           
-            <Form h1 = 'Bem Vindo!' label1 = 'Login' label2 = 'Senha' btnText = 'Entrar' p = 'Primeira vez aqui?' btnText2 = 'Cadastrar'/>
+            <Form h2 = 'Bem vindo!' label1 = 'Login' label2 = 'Senha' btnText = 'Entrar' p = 'Primeira vez aqui?' btnText2 = 'Cadastrar'/>
 
         </div>
 
