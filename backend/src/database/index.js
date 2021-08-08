@@ -1,19 +1,12 @@
-/*
 const mongoose = require('mongoose');
 
-class Database {
-  constructor() {
-    this.mongo();
-  }
-
-  mongo() {
-    this.mongoConnection = mongoose.connect(process.env.MONGO_URL, {
-      useNewUrlParser: true,
-      useFindAndModify: true,
-      useUnifiedTopology: true,
-    });
-  }
+function Database() {
+  mongoose.connect(process.env.MONGO_URL, {
+    useNewUrlParser: true,
+    useFindAndModify: false,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+  });
 }
 
-module.exports = new Database();
-*/
+module.exports = Database;
