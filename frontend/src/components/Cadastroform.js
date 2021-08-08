@@ -1,82 +1,91 @@
-import React from 'react'
-import './../css/Cadastro.css'
-import {Link} from 'react-router-dom';
+import React from 'react';
+import './../css/Cadastro.css';
+import { Link } from 'react-router-dom';
 
 // import './buttonCadastro'
 // import './button'
 //import api from '../services/api';
 
 const Cadastroform = (props) => {
-    const [user, setUser] = React.useState("");
-    const [pw, setPw] = React.useState("");
-    const [Confirmepw, setConfirmePw] = React.useState("");
+  const [user, setUser] = React.useState('');
+  const [pw, setPw] = React.useState('');
+  const [Confirmepw, setConfirmePw] = React.useState('');
 
-    function handleUserChange(e){
-        setUser(`${e.target.value}`)
+  function disabled(value, value2, value3) {
+    const button = document.querySelector('.buttonCadastro');
+    console.log(button);
+    console.log(value, value2);
+    if (value !== '' && value2 !== '' && value3 !== '') {
+      button.disabled = false;
+    } else {
+      button.disabled = true;
     }
-    function handlePwChange(e){
-        setPw(`${e.target.value}`)
-    }
-    function handleConfirmePwChange(e){
-        setConfirmePw(`${e.target.value}`)
-    }
+  }
 
-//HTML
-    return (
-        <form>
+  function handleUserChange(e) {
+    disabled(`${e.target.value}`, pw, Confirmepw);
+    setUser(`${e.target.value}`);
+  }
+  function handlePwChange(e) {
+    disabled(user, `${e.target.value}`, Confirmepw);
+    setPw(`${e.target.value}`);
+  }
+  function handleConfirmePwChange(e) {
+    disabled(user, pw, `${e.target.value}`);
+    setConfirmePw(`${e.target.value}`);
+  }
 
-            <div>
+  //HTML
+  return (
+    <form>
+      <div>
+        <h2 className="Cadastro">{props.h2}</h2>
 
-                <h2 className = "Cadastro"> 
-                    {props.h2}
-                </h2>
+        <label className="labelLoginCadastro">{props.label1}</label>
 
-                <label className = "labelLoginCadastro">
+        <input
+          className="caixaLoginCadastro"
+          onChange={handleUserChange}
+          value={user}
+          placeholder="   Insira um login"
+        />
 
-                    {props.label1}
+        <label className="labelSenhaCadastro">{props.label2}</label>
 
-                </label>
+        <input
+          className="caixaSenhaCadastro"
+          type="password"
+          onChange={handlePwChange}
+          value={pw}
+          placeholder="   Insira uma senha"
+        />
 
-                <input className = "caixaLoginCadastro" onChange={handleUserChange} value={user} placeholder="   Insira um login"/>
+        <label className="labelConfirmeSenha">{props.label3}</label>
 
-                <label className = "labelSenhaCadastro">
+        <input
+          className="caixaConfirmeSenha"
+          type="password"
+          onChange={handleConfirmePwChange}
+          value={Confirmepw}
+        />
 
-                    {props.label2}
+        <button
+          className="buttonCadastro"
+          type="submit"
+          value="disabled"
+          disabled
+        >
+          {props.btnText}
+        </button>
 
-                </label>
+        <p className="japossuiconta">{props.p}</p>
 
-                <input className = "caixaSenhaCadastro" type = "password" onChange={handlePwChange} value={pw} placeholder="   Insira uma senha"/>
-
-                <label className = "labelConfirmeSenha">
-
-                    {props.label3}
-
-                </label>
-
-                <input className = "caixaConfirmeSenha" type = "password" onChange={handleConfirmePwChange} value={Confirmepw} />
-
-                <button className="buttonCadastro" type = "submit" value = "disabled" disabled>
-
-                    {props.btnText}
-
-                </button>
-
-                <p className = "japossuiconta">
-
-                    {props.p}
-                    
-                </p>
-
-                <Link className = "linklogin" to = "/">
-
-                    {props.btnText2}
-
-                </Link>
-
-            </div>
-
-        </form>
-    )
-}
+        <Link className="linklogin" to="/">
+          {props.btnText2}
+        </Link>
+      </div>
+    </form>
+  );
+};
 
 export default Cadastroform;

@@ -1,107 +1,157 @@
-import React, {useState} from 'react'
-import './../css/Form.css'
-import {Link, useHistory} from 'react-router-dom'
-import Message from './Message'
-import './button'
-
+import React, { useState } from 'react';
+import './../css/Form.css';
+import { Link, useHistory } from 'react-router-dom';
+import Message from './Message';
+// import './button'
 //import api from '../services/api';
+
 const Form = (props) => {
-    const history = useHistory();
+  const history = useHistory();
 
-    const [user, setUser] = React.useState("");
-    const [pw, setPw] = React.useState("");
+  const [user, setUser] = React.useState('');
+  const [pw, setPw] = React.useState('');
 
-    const [error, setError] = useState(false);
-    const [success, setSuccess] = useState(false);
+  const [error, setError] = useState(false);
+  const [success, setSuccess] = useState(false);
 
-    function handleUserChange(e){
-        setUser(`${e.target.value}`)
+  function disabled(value, value2) {
+    const button = document.querySelector('.button');
+    console.log(button);
+    console.log(value, value2);
+    if (value !== '' && value2 !== '') {
+      button.disabled = false;
+    } else {
+      button.disabled = true;
     }
-    function handlePwChange(e){
-        setPw(`${e.target.value}`)
+  }
+
+  function handleUserChange(e) {
+    disabled(`${e.target.value}`, pw);
+    setUser(`${e.target.value}`);
+    // setUser((prevstate) => {
+    //   prevstate = `${e.target.value}`;
+    //   if (prevstate === '') {
+    //     button.disabled = true;
+    //   }
+    //   return prevstate;
+    // });
+  }
+
+  function handlePwChange(e) {
+    disabled(user, `${e.target.value}`);
+    setPw(`${e.target.value}`);
+    // setPw((prevstate) => {
+    //   prevstate = `${e.target.value}`;
+    //   if (prevstate === '') {
+    //     button.disabled = true;
+    //   }
+    //   return prevstate;
+    // });
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    setError(false);
+
+    if (!validate(user, pw)) {
+      setError(true);
+      return;
     }
 
-    function handleSubmit(e) {
-        e.preventDefault();
+    // login efetuado com sucesso
+    setSuccess(true);
+    setTimeout(() => history.push('/pomodoro'), 1500);
+  }
 
-        setError(false);
-        
-        if(!validate(user, pw)) {
-            setError(true);
-            return;
-        }
+  // Acendendo o botão
+  //   function stateHandle(e) {
+  //     const button = document.querySelector('.button');
+  //     e.preventDefault();
 
-        // login efetuado com sucesso
-        setSuccess(true);
-        setTimeout(() => history.push('/pomodoro'), 1500);
-    }
+  //     if (user !== '') {
+  //       if (pw === '') {
+  //         button.disabled = true;
+  //       }
+  //     }
 
-    function validate(user, pass) {
-        if(user === 'errado')
-            return false;
+  //     if (user === '') {
+  //       if (pw !== '') {
+  //         button.disabled = true;
+  //       }
+  //     }
 
-        if(!(user.trim()) || !(pass.trim()))
-            return false;
-        
-        console.log(user, pass);
+  //     if (user !== '') {
+  //       if (pw === '') {
+  //         button.disabled = true;
+  //       }
+  //     }
 
-        return true;
-    }
+  //     if (user !== '') {
+  //       if (pw !== '') {
+  //         button.disabled = false;
+  //       }
+  //     }
+  //   }
 
+  function validate(user, pass) {
+    if (user === 'errado') return false;
 
-//HTML
-    return (
-        <form onSubmit={handleSubmit}>
+    if (!user.trim() || !pass.trim()) return false;
 
-            <div>
-                <h2 className = "Bemvindo">
-                    {props.h2}
-                </h2>
+    console.log(user, pass);
 
-                <label className = "labelLogin">
+    return true;
+  }
 
-                    {props.label1}
+  //HTML===================================================================================
+  //onChange={stateHandle}
+  return (
+    <form onSubmit={handleSubmit}>
+      <div>
+        <h2 className="Bemvindo">{props.h2}</h2>
 
-                </label>
+        <label className="labelLogin">{props.label1}</label>
 
-                <input className = "caixaLogin" onChange={handleUserChange} value={user} placeholder="   Seu login..."/>
+        <input
+          className="caixaLogin"
+          onChange={handleUserChange}
+          value={user}
+          placeholder="   Seu login..."
+        />
 
-                <label className = "labelSenha">
+        <label className="labelSenha">{props.label2}</label>
 
-                    {props.label2}
+        <input
+          className="caixaSenha"
+          type="password"
+          onChange={handlePwChange}
+          value={pw}
+          placeholder="   Sua senha..."
+        />
 
-                </label>
+        <button className="button" type="submit" value="disabled" disabled>
+          {props.btnText}
+        </button>
 
-                <input className = "caixaSenha" type = "password" onChange={handlePwChange} value={pw} placeholder="   Sua senha..."/>
+        <p className="primeiravez">{props.p}</p>
 
-                <button className="button" type = "submit"  value = "disabled" disabled>
+        <Link className="linkcadastrar" to="/cadastro">
+          {props.btnText2}
+        </Link>
+      </div>
 
-                    {props.btnText}
+      {error && (
+        <Message
+          status="error"
+          title="Oops..."
+          msg="Ocorreu um erro, tente novamente"
+        />
+      )}
 
-                </button>
-
-                <p className = "primeiravez">
-
-                    {props.p}
-                    
-                </p>
-
-                <Link className = "linkcadastrar" to = "/cadastro">
-
-                    {props.btnText2}
-
-                </Link>
-
-            </div>
-
-            { error && <Message status="error" title="Oops..." msg="Ocorreu um erro, tente novamente" /> }
-
-            { success && <Message status="success" title="Wow" msg="Sucesso!" /> }
-
-        </form>
-    )
-
-
-}
+      {success && <Message status="success" title="Wow" msg="Sucesso!" />}
+    </form>
+  );
+};
 
 export default Form;
