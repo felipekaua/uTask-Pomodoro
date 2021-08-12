@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {Component} from 'react';
 import './../../css/Timer.css';
 import Modal from './../../components/Modal';
 import './../../css/Modal.css';
 import Timer from './../../components/Timer';
+import notif from './../../assets/notif.mp3';
 
     export default class MainApp extends React.Component{
         constructor(){
@@ -15,6 +16,7 @@ import Timer from './../../components/Timer';
                 timerMinute: 0,
                 isPlay: false,
                 isLong: 0,
+                audio: new Audio(notif),
             };
 
             this.aumentarTempo = this.aumentarTempo.bind(this);
@@ -28,7 +30,7 @@ import Timer from './../../components/Timer';
             this.setTimer = this.setTimer.bind(this);
             this.onPlayTimer = this.onPlayTimer.bind(this);
         }
-
+        
         aumentarTempo(){
             this.setState((prevState)=>{
                 return{
@@ -77,6 +79,7 @@ import Timer from './../../components/Timer';
 
         setTimer(){
             this.state.timerMinute = this.state.pomodoroLength;
+
         }
         
         decreaseTimerMinute(){
@@ -129,6 +132,7 @@ import Timer from './../../components/Timer';
                 background.classList.add('TimerLb')
             }else{}
             }
+            this.playAudio();
         }
 
         onPlayTimer(isPlay){
@@ -139,6 +143,10 @@ import Timer from './../../components/Timer';
                 const eng = document.getElementsByClassName('engrenagem')[0];
                 eng.style.visibility = "hidden"
             }
+        }
+
+        playAudio() {
+            this.state.audio.play();
         }
 
         render(){

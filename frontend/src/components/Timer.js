@@ -33,6 +33,14 @@ play(){
 }
 stop(){
     clearInterval(this.state.intervalId);
+
+    this.props.setTimer();
+
+    if(this.state.timerSecond!==0){
+        this.setState({
+            timerSecond:0,
+        });
+    }
     
     const startButton = document.getElementsByClassName('startButton')[0];
     const stopButton = document.getElementsByClassName('stopButton')[0];
