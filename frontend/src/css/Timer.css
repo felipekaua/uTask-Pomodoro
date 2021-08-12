@@ -79,7 +79,10 @@ button{
    position: relative;
    display: none;
  }
-
+.skipButton{
+   position: relative;
+   display: none;
+}
  .Psbreak{
   display: block;
  }

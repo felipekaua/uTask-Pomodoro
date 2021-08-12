@@ -16,7 +16,7 @@ class Timer extends React.Component{
         this.decreaseTimer = this.decreaseTimer.bind(this);
     }
 play(){
-    let intervalId = setInterval(this.decreaseTimer, 1000);
+    let intervalId = setInterval(this.decreaseTimer, 10);
     
     this.props.setTimer();
 
@@ -51,6 +51,14 @@ stop(){
 
     this.props.onPlayTimer(false);
 }
+skip(){
+    this.props.skipTimer();
+    // if(this.state.timerSecond!==0){
+    //     this.setState({
+    //         timerSecond:0,
+    //     });
+    // }
+}
 
 decreaseTimer(){
     switch(this.state.timerSecond){
@@ -70,12 +78,25 @@ decreaseTimer(){
                         Psbreak.style.display = "none";
                         Lbreak.style.display = "block";
 
+                        const skip = document.getElementsByClassName('skipButton')[0];
+                        const stop = document.getElementsByClassName('stopButton')[0]; 
+
+                        stop.style.display = "none";
+                        skip.style.display = "block";
+
                     }else{
                         const Psbreak = document.getElementsByClassName('Psbreak')[0];
                         const Lbreak = document.getElementsByClassName('Lbreak')[0];
 
                         Psbreak.style.display = "block";
                         Lbreak.style.display = "none";
+
+                        const skip = document.getElementsByClassName('skipButton')[0];
+                        const stop = document.getElementsByClassName('stopButton')[0]; 
+
+                        stop.style.display = "none";
+                        skip.style.display = "block";
+
                     }
                 }else{
                     this.setState({
@@ -86,7 +107,11 @@ decreaseTimer(){
                      
                     const Psbreak = document.getElementsByClassName('Psbreak')[0];
                     const Lbreak = document.getElementsByClassName('Lbreak')[0];
+                    const skip = document.getElementsByClassName('skipButton')[0];
+                    const stop = document.getElementsByClassName('stopButton')[0];
 
+                    skip.style.display = "none";
+                    stop.style.display = "block";
                     Psbreak.style.display = "block";
                     Lbreak.style.display = "none"; 
                 }
@@ -125,6 +150,7 @@ decreaseTimer(){
                 : this.state.timerSecond}</h2>
                 <button className="startButton" onClick={this.play}>Start</button>
                 <button className="stopButton" onClick={this.stop}>Stop</button>
+                <button className="skipButton" onClick={this.skip}>Skip</button>
             </>
         )
     }

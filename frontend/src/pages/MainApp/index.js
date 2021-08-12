@@ -28,6 +28,7 @@ import notif from './../../assets/notif.mp3';
             this.onToggleInterval = this.onToggleInterval.bind(this);
             this.decreaseTimerMinute = this.decreaseTimerMinute.bind(this);
             this.setTimer = this.setTimer.bind(this);
+            this.skipTimer = this.skipTimer.bind(this);
             this.onPlayTimer = this.onPlayTimer.bind(this);
         }
         
@@ -79,7 +80,18 @@ import notif from './../../assets/notif.mp3';
 
         setTimer(){
             this.state.timerMinute = this.state.pomodoroLength;
-
+            if(this.state.isLong!==0){
+                this.setState({
+                    isLong:0,
+                });
+            }
+        }
+        skipTimer(){
+            if(this.state.timerMinute!==0){
+                this.setState({
+                    timerMinute:0,
+                });
+            }
         }
         
         decreaseTimerMinute(){
@@ -158,6 +170,7 @@ import notif from './../../assets/notif.mp3';
                 decreaseTimerMinute={this.decreaseTimerMinute}
                 toggleInterval={this.onToggleInterval}
                 setTimer={this.setTimer}
+                skipTimer={this.skipTimer}
                 onPlayTimer={this.onPlayTimer}
                 isLong={this.state.isLong}
                 />
