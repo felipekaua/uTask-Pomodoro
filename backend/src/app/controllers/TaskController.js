@@ -10,10 +10,9 @@ class TaskController {
   }
 
   async create(req, res) {
-    const { login } = req.params;
     const { desc, pomodoros } = req.body;
 
-    const user = await User.findOne({ login: login });
+    const user = await User.findOne({ _id: req.userId });
 
     user.tasks = [...user.tasks, new Task({ desc, pomodoros })];
 
