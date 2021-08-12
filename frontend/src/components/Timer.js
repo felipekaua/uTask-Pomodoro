@@ -17,7 +17,7 @@ class Timer extends React.Component{
         this.decreaseTimer = this.decreaseTimer.bind(this);
     }
 play(){
-    let intervalId = setInterval(this.decreaseTimer, 100);
+    let intervalId = setInterval(this.decreaseTimer, 1000);
     
     this.props.setTimer();
 
