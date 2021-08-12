@@ -13,10 +13,11 @@ class Timer extends React.Component{
 
         this.play = this.play.bind(this);
         this.stop = this.stop.bind(this);
+        this.skip = this.skip.bind(this);
         this.decreaseTimer = this.decreaseTimer.bind(this);
     }
 play(){
-    let intervalId = setInterval(this.decreaseTimer, 10);
+    let intervalId = setInterval(this.decreaseTimer, 100);
     
     this.props.setTimer();
 
@@ -53,11 +54,11 @@ stop(){
 }
 skip(){
     this.props.skipTimer();
-    // if(this.state.timerSecond!==0){
-    //     this.setState({
-    //         timerSecond:0,
-    //     });
-    // }
+    if(this.state.timerSecond!==0){
+        this.setState({
+            timerSecond:0,
+        });
+    }
 }
 
 decreaseTimer(){
