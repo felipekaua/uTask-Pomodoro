@@ -90,10 +90,10 @@ export default class MainApp extends React.Component {
   }
 
   setTimer() {
-      this.setState({
-        timerMinute: this.state.pomodoroLength,
-      })
-    
+    this.setState({
+      timerMinute: this.state.pomodoroLength,
+    });
+
     if (this.state.isLong !== 0) {
       this.setState({
         isLong: 0,
@@ -193,9 +193,14 @@ export default class MainApp extends React.Component {
 
         <Tasks
           tasks={this.state.tasks}
-          addTask={(task, po) =>
-            this.setState({ tasks: [...this.state.tasks, [task, po]] })
-          }
+          addTask={(task, po) => {
+            const input = document.getElementsByClassName('input_tarefa')[0];
+            if (input.value == '') {
+            } else {
+              this.setState({ tasks: [...this.state.tasks, [task, po]] });
+              input.value = '';
+            }
+          }}
         />
       </>
     );

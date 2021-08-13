@@ -51,7 +51,7 @@ function Tasks(props) {
 
   // function resetarInput() {
   //   setText('');
-  //   setPom(1); onClick={resetarInput}
+  //   setPom(1);
   // }
 
   return (
@@ -94,6 +94,7 @@ function Tasks(props) {
             type="text"
             placeholder="Nova tarefa..."
             onChange={(e) => setText(e.currentTarget.value)}
+            className="input_tarefa"
           ></input>
 
           <div className="quant_pom">
@@ -104,11 +105,13 @@ function Tasks(props) {
             </div>
           </div>
 
-          <img
-            src={grayPlusSquare}
-            alt=""
-            onClick={() => addTask(text, pom)}
-          ></img>
+          <button type="submit" className="btn_add_taref">
+            <img
+              src={grayPlusSquare}
+              alt=""
+              onClick={() => addTask(text, pom)}
+            ></img>
+          </button>
         </form>
       </div>
     </section>
