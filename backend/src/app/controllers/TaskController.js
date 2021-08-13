@@ -2,7 +2,6 @@ const User = require('../schemas/User');
 const Task = require('../schemas/Task');
 
 class TaskController {
-
   async index(req, res) {
     const user = await User.findOne({ _id: req.userId });
 
@@ -13,7 +12,8 @@ class TaskController {
     const { desc, pomodoros } = req.body;
 
     const user = await User.findOne({ _id: req.userId });
-
+    console.log('teste');
+    console.log(user);
     user.tasks = [...user.tasks, new Task({ desc, pomodoros })];
 
     try {
@@ -31,14 +31,13 @@ class TaskController {
     const user = await User.findOne({ _id: req.userId });
     const task = user.tasks.id(id);
 
-    if(!task)
-      res.status(404).send('Ooops: task not found');
+    if (!task) res.status(404).send('Ooops: task not found');
 
     try {
       task.set({
-        'desc': desc,
-        'pomodoros': pomodoros,
-        'finished': finished
+        desc: desc,
+        pomodoros: pomodoros,
+        finished: finished,
       });
 
       await user.save();
@@ -48,15 +47,14 @@ class TaskController {
 
     res.send(user.tasks.id(id));
   }
-  
+
   async delete(req, res) {
     const { id } = req.body;
 
     const user = await User.findOne({ _id: req.userId });
     const task = user.tasks.id(id);
 
-    if(!task)
-      res.status(404).send('Ooops: task not found');
+    if (!task) res.status(404).send('Ooops: task not found');
 
     try {
       task.remove();
@@ -68,7 +66,6 @@ class TaskController {
 
     res.status(201);
   }
-
 }
 
 module.exports = new TaskController();
