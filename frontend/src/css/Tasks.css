@@ -1,0 +1,112 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.clear {
+  clear: both;
+}
+
+section {
+  /* background-color: lightgray; */
+  width: 571px;
+  height: 350px;
+  margin: 30px auto;
+}
+
+section img {
+  cursor: pointer;
+}
+.quadro {
+  height: auto;
+  max-height: calc(350px - 100px);
+  overflow-y: auto;
+}
+section > h1 {
+  color: black;
+  border-bottom: 2px solid #d9d9d9;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 36px;
+  line-height: 42px;
+  padding-bottom: 5px;
+  margin-bottom: 20px;
+}
+
+.tarefa {
+  width: 100%;
+  padding: 10px 0;
+  height: auto;
+  float: left;
+  text-align: left;
+  border-bottom: 1px solid #d9d9d9;
+  font-size: 15px;
+}
+.tarefa p {
+  width: 400px;
+  height: auto;
+  display: inline-block;
+  /* background-color: red; */
+  margin-right: 30px;
+}
+
+.tarefa span {
+  color: rgba(0, 0, 0, 0.7);
+  float: right;
+  /* background-color: red; */
+}
+
+.tarefa img {
+  float: right;
+  margin: 0 5px;
+  cursor: pointer;
+}
+.add_tarefa {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.add_tarefa form {
+  width: 456px;
+  height: 29px;
+}
+
+.add_tarefa form input {
+  width: 456px;
+  height: 29px;
+  background: #ffffff;
+  border: 1px solid #dfdfdf;
+  outline: none;
+  padding-left: 5px;
+}
+
+.quant_pom {
+  width: 80px;
+  height: 29px;
+  /* background-color: green; */
+  position: relative;
+  border: 1px solid #dfdfdf;
+}
+.quant_pom p {
+  /* background-color: blue; */
+  line-height: 29px;
+  padding-left: 5px;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.quant_pom .box_img {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  display: flex;
+  flex-direction: column;
+}
+
+.quant_pom .box_img img {
+  width: 10px;
+  height: 5px;
+  margin-bottom: 10px;
+}
