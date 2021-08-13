@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './../../css/Timer.css';
 import Modal from './../../components/Modal';
 import './../../css/Modal.css';
 import Timer from './../../components/Timer';
 import Tasks from './../../components/Tasks';
+import notif from './../../assets/notif.mp3';
 
 export default class MainApp extends React.Component {
   constructor() {
@@ -17,6 +18,7 @@ export default class MainApp extends React.Component {
       isPlay: false,
       isLong: 0,
       tasks: [],
+      audio: new Audio(notif),
     };
 
     this.aumentarTempo = this.aumentarTempo.bind(this);
@@ -28,9 +30,19 @@ export default class MainApp extends React.Component {
     this.onToggleInterval = this.onToggleInterval.bind(this);
     this.decreaseTimerMinute = this.decreaseTimerMinute.bind(this);
     this.setTimer = this.setTimer.bind(this);
+    this.skipTimer = this.skipTimer.bind(this);
     this.onPlayTimer = this.onPlayTimer.bind(this);
   }
 
+  onPlayTimer(isPlay) {
+    this.setState({
+      isPlay: isPlay,
+    });
+    if (isPlay === true) {
+      const eng = document.getElementsByClassName('engrenagem')[0];
+      eng.style.visibility = 'hidden';
+    }
+  }
   aumentarTempo() {
     this.setState((prevState) => {
       return {
@@ -79,6 +91,18 @@ export default class MainApp extends React.Component {
 
   setTimer() {
     this.state.timerMinute = this.state.pomodoroLength;
+    if (this.state.isLong !== 0) {
+      this.setState({
+        isLong: 0,
+      });
+    }
+  }
+  skipTimer() {
+    if (this.state.timerMinute !== 0) {
+      this.setState({
+        timerMinute: 0,
+      });
+    }
   }
 
   decreaseTimerMinute() {
@@ -132,17 +156,77 @@ export default class MainApp extends React.Component {
       } else {
       }
     }
+    this.playAudio();
   }
 
-  onPlayTimer(isPlay) {
-    this.setState({
-      isPlay: isPlay,
-    });
-    if (isPlay === true) {
-      const eng = document.getElementsByClassName('engrenagem')[0];
-      eng.style.visibility = 'hidden';
+  onToggleInterval(isSession) {
+    if (isSession) {
+      this.setState({
+        timerMinute: this.state.pomodoroLength,
+      });
+      const background = document.getElementById('timerId');
+      if (background.classList.contains('TimerSb')) {
+        background.classList.remove('TimerSb');
+        background.classList.add('Timer');
+      } else if (background.classList.contains('TimerLb')) {
+        background.classList.remove('TimerLb');
+        background.classList.add('Timer');
+      } else {
+      }
+    } else if (isSession === false && this.state.isLong < 3) {
+      this.setState({
+        timerMinute: this.state.ShortRestLength,
+        isLong: this.state.isLong + 1,
+      });
+      const background = document.getElementById('timerId');
+      if (background.classList.contains('Timer')) {
+        background.classList.remove('Timer');
+        background.classList.add('TimerSb');
+      } else if (background.classList.contains('TimerLb')) {
+        background.classList.remove('TimerLb');
+        background.classList.add('TimerSb');
+      } else {
+      }
+    } else {
+      this.setState({
+        timerMinute: this.state.LongRestLength,
+        isLong: 0,
+      });
+      const background = document.getElementById('timerId');
+      if (background.classList.contains('Timer')) {
+        background.classList.remove('Timer');
+        background.classList.add('TimerLb');
+      } else if (background.classList.contains('TimerSb')) {
+        background.classList.remove('TimerSb');
+        background.classList.add('TimerLb');
+      } else {
+      }
     }
   }
+
+  playAudio() {
+    this.state.audio.play();
+  }
+
+  // render(){
+  //    return (<>
+  //     <div className="Timer" id="timerId">
+
+  //         <Timer
+  //         timerMinute={this.state.timerMinute}
+  //         decreaseTimerMinute={this.decreaseTimerMinute}
+  //         toggleInterval={this.onToggleInterval}
+  //         setTimer={this.setTimer}
+  //         skipTimer={this.skipTimer}
+  //         onPlayTimer={this.onPlayTimer}
+  //         isLong={this.state.isLong}
+  //         />
+
+  //     </div>
+  //         <Modal
+  //         pomodoroLength={this.state.pomodoroLength}
+  //         aumentarM={this.aumentarTempo}
+  //         diminuirM={this.diminuirTempo}
 
   render() {
     return (
