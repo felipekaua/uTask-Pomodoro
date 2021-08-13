@@ -30,19 +30,19 @@ const userSchema = new mongoose.Schema({
     type: 'Number',
     required: true,
     min: 0,
-    default: 4
+    default: 25
   },
   'short_break': {
     type: 'Number',
     required: true,
     min: 0,
-    default: 2
+    default: 5
   },
   'long_break': {
     type: 'Number',
     required: true,
     min: 0,
-    default: 1
+    default: 15
   },
   'tasks': {
     type: [taskSchema],
