@@ -1,4 +1,5 @@
 import React from 'react';
+import api from './../services/api'
 import './../css/Modal.css';
 import blackArrowUp from './../assets/blackArrowUp.png';
 import blackArrowDown from './../assets/blackArrowDown.png';
@@ -48,33 +49,13 @@ function Modal(props) {
     };
   }
 
-  // ===============================================COOKIES=====================================================
-  /*function salvarCookies() {
-    let data = new Date();
-    let minutos = 1000;
-    data.setTime(data.getTime() + minutos * 1000 * 60);
+  async function saveChanges(e){
+    e.preventDefault();
+    
+    console.log("teste savebutton")
 
-    document.cookie = `tempo=${tempo}; expires=${data.toUTCString()}`;
-    document.cookie = `tempo1=${tempo1}; expires=${data.toUTCString()}`;
-    document.cookie = `tempo2=${tempo2}; expires=${data.toUTCString()}`;
-    // console.log(document.cookie);
-    console.log(tempo);
-    refresh();
   }
 
-  function refresh() {
-    var cookie;
-    if (document.cookie) {
-      cookie = document.cookie.split(';');
-      setTempo(+cookie[0].split('=')[1]);
-      setTempo1(+cookie[1].split('=')[1]);
-      setTempo2(+cookie[2].split('=')[1]);
-      console.log(cookie);
-    }
-  }
-  window.onload = refresh;
-  // ====================================================================================================*/
-  /*onClick={salvarCookies}*/
   return (
     <div className="modalBackground" onClick={fecharModal}>
       <div className="modalWindow">
@@ -113,7 +94,7 @@ function Modal(props) {
             </div>
           </div>
         </div>
-        <button type="button">Salvar</button>
+        <button type="button" onClick={saveChanges}>Salvar</button>
       </div>
     </div> /*modalBackground*/
   );
