@@ -5,6 +5,7 @@ import './../../css/Modal.css';
 import Timer from './../../components/Timer';
 import Tasks from './../../components/Tasks';
 import notif from './../../assets/notif.mp3';
+import Header from './../../components/Header'
 
 export default class MainApp extends React.Component {
   constructor() {
@@ -33,6 +34,8 @@ export default class MainApp extends React.Component {
     this.skipTimer = this.skipTimer.bind(this);
     this.onPlayTimer = this.onPlayTimer.bind(this);
   }
+
+  
 
   onPlayTimer(isPlay) {
     this.setState({
@@ -169,6 +172,7 @@ export default class MainApp extends React.Component {
   render() {
     return (
       <>
+      <Header/>
         <div className="Timer" id="timerId">
           <Timer
             timerMinute={this.state.timerMinute}
