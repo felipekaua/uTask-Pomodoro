@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/uTask-Pomodoro/static/css/main.abf9201b.chunk.css",
+    "main.js": "/uTask-Pomodoro/static/js/main.d3da75fb.chunk.js",
+    "main.js.map": "/uTask-Pomodoro/static/js/main.d3da75fb.chunk.js.map",
+    "runtime-main.js": "/uTask-Pomodoro/static/js/runtime-main.301be6a7.js",
+    "runtime-main.js.map": "/uTask-Pomodoro/static/js/runtime-main.301be6a7.js.map",
+    "static/js/2.4591512c.chunk.js": "/uTask-Pomodoro/static/js/2.4591512c.chunk.js",
+    "static/js/2.4591512c.chunk.js.map": "/uTask-Pomodoro/static/js/2.4591512c.chunk.js.map",
+    "index.html": "/uTask-Pomodoro/index.html",
+    "static/css/main.abf9201b.chunk.css.map": "/uTask-Pomodoro/static/css/main.abf9201b.chunk.css.map",
+    "static/js/2.4591512c.chunk.js.LICENSE.txt": "/uTask-Pomodoro/static/js/2.4591512c.chunk.js.LICENSE.txt",
+    "static/media/Form.css": "/uTask-Pomodoro/static/media/Ubuntu-Regular.fbdecfce.ttf",
+    "static/media/notif.54f2edf8.mp3": "/uTask-Pomodoro/static/media/notif.54f2edf8.mp3"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.301be6a7.js",
+    "static/js/2.4591512c.chunk.js",
+    "static/css/main.abf9201b.chunk.css",
+    "static/js/main.d3da75fb.chunk.js"
+  ]
+}
