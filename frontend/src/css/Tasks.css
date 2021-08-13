@@ -119,8 +119,12 @@ section > h1 {
   text-decoration: line-through !important;
 }
 
+.greenArrow {
+  display: block;
+}
+
 .ret_done {
-  display: none;
+  display: block;
 }
 
 .btn_task {
@@ -128,7 +132,19 @@ section > h1 {
   /* background-color: black; */
 }
 
+.btn_task img:last-of-type {
+  display: none;
+}
+
 .tarefa:hover .btn_task {
   display: block;
   float: right;
+}
+
+.done .btn_task img:last-of-type {
+  display: block;
+}
+
+.done .greenArrow {
+  display: none;
 }

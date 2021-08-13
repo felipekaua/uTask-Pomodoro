@@ -36,19 +36,23 @@ function Tasks(props) {
     }
   }
 
-  function completeTask() {
-    const tarefa = document.querySelector('.tarefa');
-    const ret = document.querySelector('.ret_done');
-    const green = document.querySelector('#greenArrow');
-    tarefa.classList.add('done');
-    green.style.display = 'none';
-    ret.classList.remove('ret_done');
+  function completeTask(e) {
+    e.target.parentNode.parentNode.classList.add('done');
+  }
+
+  function retornarTask(e) {
+    e.target.parentNode.parentNode.classList.remove('done');
   }
 
   function removeTask(e) {
     console.log(e.target.parentNode.parentNode);
     e.target.parentNode.parentNode.remove();
   }
+
+  // function resetarInput() {
+  //   setText('');
+  //   setPom(1); onClick={resetarInput}
+  // }
 
   return (
     <section>
@@ -66,10 +70,15 @@ function Tasks(props) {
                   src={greenArrow}
                   alt=""
                   onClick={completeTask}
-                  id="greenArrow"
+                  className="greenArrow"
                 ></img>
 
-                <img src={return_ico} alt="" className="ret_done"></img>
+                <img
+                  src={return_ico}
+                  alt=""
+                  className="ret_done"
+                  onClick={retornarTask}
+                ></img>
               </div>
               <span>{po} pom.</span>
             </div>
