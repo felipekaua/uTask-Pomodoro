@@ -57,6 +57,7 @@ const Form = (props) => {
     }).then((res)=>{
       const { _id } = res.data;
       console.log(_id);
+      localStorage.setItem('user', _id);
       setSuccess(true);
       setTimeout(() => history.push('/pomodoro'), 1500);
     }).catch((res)=>{

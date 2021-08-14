@@ -51,9 +51,8 @@ function Modal(props) {
 
   async function saveChanges(e){
     e.preventDefault();
-    
-    console.log("teste savebutton")
-
+    const userId = localStorage.getItem('user');
+    console.log(userId);
   }
 
   return (

@@ -8,6 +8,7 @@ import redX from './../assets/redX_ico.png';
 import grayPlusSquare from './../assets/grayPlusSquare_ico.png';
 import return_ico from './../assets/return_ico.png';
 
+
 function Tasks(props) {
   const { tasks, addTask } = props;
   const [text, setText] = React.useState('');

@@ -39,11 +39,12 @@ class UserController  {
     if(pass != user.password)
       res.status(400).send('Oops: password mismatch');
 
-    res.send(
-      jwt.sign({ id: user.id }, process.env.SECRET, {
-        expiresIn: 600 // 10min fora os ameaço
-      })
-    );
+    // res.send(
+    //   jwt.sign({ id: user.id }, process.env.SECRET, {
+    //     expiresIn: 600 // 10min fora os ameaço
+    //   })
+    // );
+    return res.json(user);
   }
 
 }

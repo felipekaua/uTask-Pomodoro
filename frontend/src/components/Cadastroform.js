@@ -12,6 +12,8 @@ const Cadastroform = (props) => {
   const [pw, setPw] = React.useState('');
   const [Confirmepw, setConfirmePw] = React.useState('');
 
+  const history = useHistory();
+
   function disabled(value, value2, value3) {
     const button = document.querySelector('.buttonCadastro');
     if (value !== '' && value2 !== '' && value3 !== '') {
@@ -43,8 +45,8 @@ const Cadastroform = (props) => {
         password: pw,
       }).then((res)=>{
         const { _id } = res.data;
-        console.log(_id);
-        alert("usuário criado com sucesso!");
+        localStorage.setItem('user', _id);
+        setTimeout(() => history.push('/pomodoro'), 1500);
       }).catch((err)=>{
         console.log("erro na criação de usuário");
       });
