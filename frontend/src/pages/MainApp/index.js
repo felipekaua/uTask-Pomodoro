@@ -181,6 +181,7 @@ export default class MainApp extends React.Component {
             setTimer={this.setTimer}
             onPlayTimer={this.onPlayTimer}
             isLong={this.state.isLong}
+            skipTimer={this.skipTimer}
           />
         </div>
         <Modal

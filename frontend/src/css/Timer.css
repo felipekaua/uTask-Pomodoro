@@ -13,6 +13,7 @@
    background-position: center;
    width: 100%;
    padding: 50px;
+   opacity: 0.75;
  }
  .TimerSb{
   margin: auto;
@@ -24,6 +25,7 @@
    background-position: center;
    width: 100%;
    padding: 50px;
+   opacity: 0.75;
  }
  .TimerLb{
   margin: auto;
@@ -35,6 +37,7 @@
    background-position: center;
    width: 100%;
    padding: 50px;
+   opacity: 0.75;
  }
  h1{
   user-select: none;
@@ -44,6 +47,7 @@
    color: white;
  }
  h2{
+   opacity: 100%;
   user-select: none;
   font-size: 36px;
   text-align: center;

@@ -14,9 +14,10 @@ const User = require('../schemas/User');
 class UserController  {
 
   async create(req, res) {
+    const {login, password} = req.body;
     const user = new User({
-      'login': 'user',
-      'password': '1234',
+      'login': login,
+      'password': password,
     });
 
     try {
@@ -25,7 +26,7 @@ class UserController  {
       return res.status(400).send(`Ooops: ${err.message}`);
     }
 
-    return res.send('store');
+    return res.json(user);
   }
 
   async login(req, res) {

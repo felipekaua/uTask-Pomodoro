@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './../css/Cadastro.css';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+import api from '../services/api';
 
 // import './buttonCadastro'
 // import './button'
@@ -13,8 +14,6 @@ const Cadastroform = (props) => {
 
   function disabled(value, value2, value3) {
     const button = document.querySelector('.buttonCadastro');
-    console.log(button);
-    console.log(value, value2);
     if (value !== '' && value2 !== '' && value3 !== '') {
       button.disabled = false;
     } else {
@@ -35,9 +34,25 @@ const Cadastroform = (props) => {
     setConfirmePw(`${e.target.value}`);
   }
 
+
+  async function handleSubmit(e){
+    e.preventDefault();
+    
+      await api.post('/users/create',{
+        login: user,
+        password: pw,
+      }).then((res)=>{
+        const { _id } = res.data;
+        console.log(_id);
+        alert("usuário criado com sucesso!");
+      }).catch((err)=>{
+        console.log("erro na criação de usuário");
+      });
+  }
+
   //HTML
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <div>
         <h2 className="Cadastro">{props.h2}</h2>
 

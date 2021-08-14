@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './../css/Form.css';
 import { Link, useHistory } from 'react-router-dom';
 import Message from './Message';
-//import api from '../services/api';
+import api from '../services/api';
 
 const Form = (props) => {
   const history = useHistory();
@@ -15,8 +15,6 @@ const Form = (props) => {
 
   function disabled(value, value2) {
     const button = document.querySelector('.button');
-    console.log(button);
-    console.log(value, value2);
     if (value !== '' && value2 !== '') {
       button.disabled = false;
     } else {
@@ -48,19 +46,33 @@ const Form = (props) => {
     // });
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
 
     setError(false);
 
+    await api.post('/users/login',{
+      login: user,
+      pass: pw,
+    }).then((res)=>{
+      const { _id } = res.data;
+      console.log(_id);
+
+
+
+      setSuccess(true);
+      setTimeout(() => history.push('/pomodoro'), 1500);
+    }).catch((res)=>{
+      console.log("something went wrong");
+    })
     if (!validate(user, pw)) {
       setError(true);
       return;
     }
 
     // login efetuado com sucesso
-    setSuccess(true);
-    setTimeout(() => history.push('/pomodoro'), 1500);
+    // setSuccess(true);
+    // setTimeout(() => history.push('/pomodoro'), 1500);
   }
 
   // Acendendo o botão
@@ -97,8 +109,6 @@ const Form = (props) => {
     if (user === 'errado') return false;
 
     if (!user.trim() || !pass.trim()) return false;
-
-    console.log(user, pass);
 
     return true;
   }
