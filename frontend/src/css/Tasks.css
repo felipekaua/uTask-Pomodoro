@@ -70,7 +70,7 @@ section > h1 {
 }
 
 .add_tarefa form {
-  width: 456px;
+  width: 100%;
   height: 29px;
 }
 
@@ -109,4 +109,53 @@ section > h1 {
   width: 10px;
   height: 5px;
   margin-bottom: 10px;
+}
+
+.done {
+  color: gray !important;
+}
+
+.done p {
+  text-decoration: line-through !important;
+}
+
+.greenArrow {
+  display: block;
+}
+
+.ret_done {
+  display: block;
+}
+
+.btn_task {
+  display: none;
+  /* background-color: black; */
+}
+
+.btn_task img:last-of-type {
+  display: none;
+}
+
+.tarefa:hover .btn_task {
+  display: block;
+  float: right;
+}
+
+.done .btn_task img:last-of-type {
+  display: block;
+}
+
+.done .greenArrow {
+  display: none;
+}
+
+.btn_add_taref {
+  width: 30px;
+  height: 29px;
+  margin: 0;
+  border-radius: 0;
+  text-align: center;
+  padding: 0;
+  background-color: white;
+  border: 0;
 }

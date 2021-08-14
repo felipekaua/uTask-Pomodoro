@@ -6,7 +6,7 @@ const verifyJWT = require('./app/middlewares/auth');
 const UserController = require('./app/controllers/UserController');
 const TaskController = require('./app/controllers/TaskController');
 
-app.get('/', function(req, res) {
+app.get('/', function (req, res) {
   res.send('uTask-Pomodoro');
 });
 
@@ -16,7 +16,7 @@ app.post('/users/create', UserController.create);
 
 // tasks
 app.get('/tasks', verifyJWT, TaskController.index);
-app.post('/tasks', verifyJWT, TaskController.index);
+app.post('/tasks', verifyJWT, TaskController.create);
 app.put('/tasks', verifyJWT, TaskController.update);
 app.delete('/tasks', verifyJWT, TaskController.delete);
 
