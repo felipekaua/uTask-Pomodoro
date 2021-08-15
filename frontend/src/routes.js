@@ -22,7 +22,7 @@ function routes() {
   return (
     <Switch>
       <Route exact path="/" component={Login} />
-      <Route path="/cadastro" component={Cadastro} />
+      <Route exact path="/cadastro" component={Cadastro} />
       <PrivateRoute path="/pomodoro" exact component={MainApp} />
       <Route path="*" component={() => <h3>Page not found</h3>} />
     </Switch>

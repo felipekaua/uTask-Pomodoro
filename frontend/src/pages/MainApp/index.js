@@ -149,7 +149,7 @@ export default class MainApp extends React.Component {
         background.classList.add('Timer');
       } else {
       }
-    } else if (isSession === false && this.state.isLong < 3) {
+    } else if (isSession === false && this.state.isLong < 2) {
       this.setState({
         timerMinute: this.state.ShortRestLength,
         isLong: this.state.isLong + 1,

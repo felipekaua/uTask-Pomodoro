@@ -31,10 +31,11 @@ class Timer extends React.Component{
     }
 
     play(){
-        if(!this.state.task)
-            return false;
+        if(!this.state.task){
+            return alert('Selecione uma tarefa para iniciar o pomodoro!');
+        }
 
-        let intervalId = setInterval(this.decreaseTimer, 10);
+        let intervalId = setInterval(this.decreaseTimer, 1000);
         
         this.props.setTimer();
 
@@ -74,7 +75,8 @@ class Timer extends React.Component{
     reset() {
         this.stop();
         this.setState({
-            isSession: true
+            isSession: true,
+            qtdPomodoros: 0
         });
 
         const timer = document.getElementById('timerId');
@@ -106,19 +108,21 @@ class Timer extends React.Component{
     }
 
     decreaseTimer(){
+        if(this.state.qtdPomodoros === this.state.maxPomodoros)
+            return this.reset();
+
         switch(this.state.timerSecond){
             case 0:
                 if(this.props.timerMinute === 0){
-                    if((this.state.qtdPomodoros + 1) === this.state.maxPomodoros)
-                        return this.reset();
-
-                    this.setState({
-                        qtdPomodoros: this.state.qtdPomodoros + 1
-                    });
+                    console.log(this.state.isSession)
 
                     if(this.state.isSession){
                         this.setState({
-                        isSession: false 
+                            isSession: false 
+                        });
+
+                        this.setState({
+                            qtdPomodoros: this.state.qtdPomodoros + 1
                         });
 
                         this.props.toggleInterval(this.state.isSession);
@@ -148,7 +152,6 @@ class Timer extends React.Component{
 
                             stop.style.display = "none";
                             skip.style.display = "block";
-
                         }
                     }else{
                         this.setState({

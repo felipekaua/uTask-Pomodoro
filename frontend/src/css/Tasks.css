@@ -43,6 +43,11 @@ section > h1 {
   font-size: 15px;
   cursor: pointer;
 }
+
+.tarefa.selected {
+  background: aliceblue;
+}
+
 .tarefa p {
   width: 400px;
   height: auto;

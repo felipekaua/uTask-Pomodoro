@@ -91,11 +91,15 @@ function Tasks(props) {
   function handleClick(e, ref) {
     const task = taskRefs[ref].current;
 
-    if(e.target.tagName !== 'IMG')
+    if(e.target.tagName !== 'IMG'){
       setTask(
         task.getAttribute('data-key'), 
         task.getAttribute('data-pomodoros')
       );
+
+      taskRefs.map((taskRef) => taskRef.current.classList.remove('selected'));
+      task.classList.add('selected');
+    }
   }
   return (
     <section>
