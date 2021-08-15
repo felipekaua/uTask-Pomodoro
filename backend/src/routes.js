@@ -16,8 +16,8 @@ app.get('/', function (req, res) {
 // users
 app.post('/users/login', UserController.login);
 app.post('/users/create', UserController.create);
-app.put('/users/findUser', UserController.findUser);
-app.post('/users/getTimes', UserController.getTimes);
+app.put('/users/findUser', verifyJWT, UserController.findUser);
+app.post('/users/getTimes', verifyJWT, UserController.getTimes);
 
 // tasks
 app.get('/tasks', verifyJWT, TaskController.index);

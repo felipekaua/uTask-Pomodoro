@@ -14,7 +14,7 @@ const User = require('../schemas/User');
 class UserController {
   async getTimes(req, res) {
     const { _id } = req.body;
-    const user = await User.findOne({ _id });
+    const user = await User.findOne({ _id: req.userId });
     res.json(user);
   }
 
@@ -22,7 +22,7 @@ class UserController {
     const { _id, pomodoro, short_break, long_break } = req.body;
     console.log(pomodoro);
     await User.updateOne(
-      { _id: _id },
+      { _id: req.userId },
       {
         pomodoro: pomodoro,
         short_break: short_break,

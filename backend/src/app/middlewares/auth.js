@@ -16,7 +16,7 @@ const verifyJWT = async (req, res, next) => {
 
     // adiciono o id do user a request para uso futuro
     req.userId = decoded.id;
-
+    console.log(decoded.id);
     next();
   });
 };

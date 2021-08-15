@@ -86,9 +86,10 @@ section > h1 {
 .quant_pom {
   width: 80px;
   height: 29px;
-  position:relative;
+  position: sticky;
   border: 1px solid #dfdfdf;
 }
+
 .quant_pom p {
   /* background-color: blue; */
   line-height: 29px;
