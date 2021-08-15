@@ -3,6 +3,7 @@ import './../css/Form.css';
 import { Link, useHistory } from 'react-router-dom';
 import Message from './Message';
 import api from '../services/api';
+import { login } from './../services/auth';
 
 const Form = (props) => {
   const history = useHistory();
@@ -51,18 +52,22 @@ const Form = (props) => {
 
     setError(false);
 
-    await api.post('/users/login',{
-      login: user,
-      pass: pw,
-    }).then((res)=>{
-      const { _id } = res.data;
-      localStorage.setItem('user', _id);
-      setSuccess(true);
-      setTimeout(() => history.push('/pomodoro'), 1500);
-    }).catch((res)=>{
-      console.log("something went wrong");
-      setError(true);
-    })
+    await api
+      .post('/users/login', {
+        login: user,
+        password: pw,
+      })
+      .then((res) => {
+        //const { _id } = res.data;
+        const { token } = res.data;
+        login(token);
+        setSuccess(true);
+        setTimeout(() => history.push('/pomodoro'), 1500);
+      })
+      .catch((res) => {
+        console.log('something went wrong');
+        setError(true);
+      });
     if (!validate(user, pw)) {
       setError(true);
       return;

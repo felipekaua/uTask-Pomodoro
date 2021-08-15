@@ -5,8 +5,8 @@ import './../../css/Modal.css';
 import Timer from './../../components/Timer';
 import Tasks from './../../components/Tasks';
 import notif from './../../assets/notif.mp3';
-import Header from './../../components/Header'
-import api from './../../services/api'
+import Header from './../../components/Header';
+import api from './../../services/api';
 
 export default class MainApp extends React.Component {
   constructor() {
@@ -24,17 +24,19 @@ export default class MainApp extends React.Component {
     };
 
     const userId = localStorage.getItem('user');
-        api.post('/users/getTimes',{
-          _id: userId
-        }).then((res)=>{
-          const { pomodoro, short_break, long_break } = res.data;
+    api
+      .post('/users/getTimes', {
+        _id: userId,
+      })
+      .then((res) => {
+        const { pomodoro, short_break, long_break } = res.data;
 
-          this.setState({
-            pomodoroLength: pomodoro,
-            ShortRestLength: short_break,
-            LongRestLength: long_break
-          });
-        })
+        this.setState({
+          pomodoroLength: pomodoro,
+          ShortRestLength: short_break,
+          LongRestLength: long_break,
+        });
+      });
 
     this.aumentarTempo = this.aumentarTempo.bind(this);
     this.diminuirTempo = this.diminuirTempo.bind(this);
@@ -105,8 +107,7 @@ export default class MainApp extends React.Component {
   }
 
   setTimer() {
-
-    this.state.timerMinute=this.state.pomodoroLength;
+    this.state.timerMinute = this.state.pomodoroLength;
 
     if (this.state.isLong !== 0) {
       this.setState({
@@ -183,7 +184,7 @@ export default class MainApp extends React.Component {
   render() {
     return (
       <>
-      <Header/>
+        <Header />
         <div className="Timer" id="timerId">
           <Timer
             timerMinute={this.state.timerMinute}
@@ -209,14 +210,14 @@ export default class MainApp extends React.Component {
 
         <Tasks
           tasks={this.state.tasks}
-          addTask={(task, po) => {
-            const input = document.getElementsByClassName('input_tarefa')[0];
-            if (input.value == '') {
-            } else {
-              this.setState({ tasks: [...this.state.tasks, [task, po]] });
-              input.value = '';
-            }
-          }}
+          // addTask={(task, po) => {
+          //   const input = document.getElementsByClassName('input_tarefa')[0];
+          //   if (input.value === '') {
+          //   } else {
+          //     this.setState({ tasks: [...this.state.tasks, [task, po]] });
+          //     input.value = '';
+          //   }
+          // }}
         />
       </>
     );

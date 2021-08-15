@@ -3,38 +3,40 @@ const User = require('../schemas/User');
 
 /**
  * To do:
- * 
+ *
  * 1) Criptografar a senha no cadastro (salvar a senha criptografada)
  * 2) Comparar as senhas criptografadas no login
- * 
+ *
  * @see https://imasters.com.br/back-end/autenticacao-json-web-token-jwt-em-node-js
  * @see https://www.bezkoder.com/node-js-jwt-authentication-mysql/
  */
 
-class UserController  {
-
-  async getTimes(req, res){
-    const {_id} = req.body;
-    const user = await User.findOne({ _id })
-    res.json(user)
+class UserController {
+  async getTimes(req, res) {
+    const { _id } = req.body;
+    const user = await User.findOne({ _id });
+    res.json(user);
   }
 
-  async findUser(req, res){
-    const {_id, pomodoro, short_break, long_break} = req.body;
+  async findUser(req, res) {
+    const { _id, pomodoro, short_break, long_break } = req.body;
     console.log(pomodoro);
-    await User.updateOne({ _id: _id},{
-      pomodoro: pomodoro,
-      short_break: short_break,
-      long_break: long_break,
-    })
-    res.send("ok")
+    await User.updateOne(
+      { _id: _id },
+      {
+        pomodoro: pomodoro,
+        short_break: short_break,
+        long_break: long_break,
+      },
+    );
+    res.send('ok');
   }
 
   async create(req, res) {
-    const {login, password} = req.body;
+    const { login, password } = req.body;
     const user = new User({
-      'login': login,
-      'password': password,
+      login: login,
+      password: password,
     });
 
     try {
@@ -47,23 +49,21 @@ class UserController  {
   }
 
   async login(req, res) {
-    const { login, pass } = req.body;
+    const { login, password } = req.body;
     const user = await User.findOne({ login });
+    const UserModel = new User();
+    if (!user) res.status(400).send('Oops: user not found');
 
-    if(!user)
-      res.status(400).send('Oops: user not found');
-
-    if(pass != user.password)
+    if (!(await UserModel.comparePassword(password, user.password)))
       res.status(400).send('Oops: password mismatch');
-
-    // res.send(
-    //   jwt.sign({ id: user.id }, process.env.SECRET, {
-    //     expiresIn: 600 // 10min fora os ameaço
-    //   })
-    // );
-    return res.json(user);
+    const retorno = {
+      userId: user.id,
+      token: jwt.sign({ id: user.id }, process.env.SECRET, {
+        expiresIn: 6400, // 10min fora os ameaço
+      }),
+    };
+    res.send(retorno);
   }
-
 }
 
 module.exports = new UserController();

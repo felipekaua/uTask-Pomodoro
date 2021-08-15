@@ -36,19 +36,21 @@ const Cadastroform = (props) => {
     setConfirmePw(`${e.target.value}`);
   }
 
-
-  async function handleSubmit(e){
+  async function handleSubmit(e) {
     e.preventDefault();
-    
-      await api.post('/users/create',{
+
+    await api
+      .post('/users/create', {
         login: user,
         password: pw,
-      }).then((res)=>{
+      })
+      .then((res) => {
         const { _id } = res.data;
         localStorage.setItem('user', _id);
         setTimeout(() => history.push('/pomodoro'), 1500);
-      }).catch((err)=>{
-        console.log("erro na criação de usuário");
+      })
+      .catch((err) => {
+        console.log('erro na criação de usuário');
       });
   }
 
