@@ -1,0 +1,26 @@
+{
+  "name": "utask-pomodoro",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "server": "cd backend && yarn dev",
+    "server-install": "cd backend && yarn install",
+    "client": "cd frontend && yarn start",
+    "client-install": "cd frontend && yarn install",
+    "app": "concurrently \"yarn server\" \"yarn client\"",
+    "setup": "yarn install && yarn server-install && yarn client-install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/natyumi/uTask-Pomodoro.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/natyumi/uTask-Pomodoro/issues"
+  },
+  "homepage": "https://github.com/natyumi/uTask-Pomodoro#readme",
+  "devDependencies": {
+    "concurrently": "^6.2.1"
+  }
+}

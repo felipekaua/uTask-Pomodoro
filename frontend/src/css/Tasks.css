@@ -9,7 +9,6 @@
 }
 
 section {
-  /* background-color: lightgray; */
   width: 571px;
   height: 350px;
   margin: 30px auto;
@@ -48,14 +47,12 @@ section > h1 {
   width: 400px;
   height: auto;
   display: inline-block;
-  /* background-color: red; */
   margin-right: 30px;
 }
 
 .tarefa span {
   color: rgba(0, 0, 0, 0.7);
   float: right;
-  /* background-color: red; */
 }
 
 .tarefa img {
@@ -92,7 +89,6 @@ section > h1 {
 }
 
 .quant_pom p {
-  /* background-color: blue; */
   line-height: 29px;
   padding-left: 5px;
   color: rgba(0, 0, 0, 0.7);
@@ -130,7 +126,6 @@ section > h1 {
 
 .btn_task {
   display: none;
-  /* background-color: black; */
 }
 
 .btn_task img:last-of-type {

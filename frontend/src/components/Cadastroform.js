@@ -3,10 +3,6 @@ import './../css/Cadastro.css';
 import { Link, useHistory } from 'react-router-dom';
 import api from '../services/api';
 
-// import './buttonCadastro'
-// import './button'
-//import api from '../services/api';
-
 const Cadastroform = (props) => {
   const [user, setUser] = React.useState('');
   const [pw, setPw] = React.useState('');
