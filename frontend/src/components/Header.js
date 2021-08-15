@@ -4,8 +4,11 @@ import logoTomateVermelho from './../assets/logoTomateVermelho.png';
 import utaskPomodoro from './../assets/utaskPomodoro.png';
 import config_ico from './../assets/config_ico.png';
 
-function Header() {
+function Header({ isPlay }) {
   function abrirModal() {
+    if(isPlay)
+      return false;
+
     const mod = document.getElementsByClassName('modalBackground')[0];
     mod.style.display = 'block';
   }

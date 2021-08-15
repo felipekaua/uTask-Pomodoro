@@ -10,10 +10,11 @@ import return_ico from './../assets/return_ico.png';
 
 
 function Tasks(props) {
-  const { tasks } = props;
+  const { setTask } = props;
   const [text, setText] = React.useState('');
   const [pom, setPom] = React.useState(1);
   const [listTask, setListTask] = React.useState([]);
+  const [taskRefs, setTaskRefs] = React.useState([]);
 
   async function listarTasks() {
     const retorno = await api.get('/tasks');
@@ -24,6 +25,15 @@ function Tasks(props) {
   }
 
   React.useEffect(listarTasks, []);
+
+  React.useEffect(() => {
+    console.log(taskRefs);
+
+    // add or remove refs
+    setTaskRefs(taskRefs => (
+      Array(listTask.length).fill().map((_, i) => console.log(i) || taskRefs[i] || React.createRef())
+    ));
+  }, [listTask]);
 
   // function atualizaIndex(prevState) {
   //   // setIndex((prevState) => prevState + 1);
@@ -91,6 +101,16 @@ function Tasks(props) {
     e.target.parentNode.parentNode.remove();
   }
 
+  function handleClick(e, ref) {
+    const task = taskRefs[ref].current;
+
+    if(e.target.tagName !== 'IMG')
+      setTask(
+        task.getAttribute('data-key'), 
+        task.getAttribute('data-pomodoros')
+      );
+  }
+
   // function resetarInput() {
   //   setText('');
   //   setPom(1);
@@ -102,7 +122,7 @@ function Tasks(props) {
 
       <div className="quadro">
         {listTask &&
-          listTask.map((task) => {
+          listTask.map((task, ref) => {
             // console.log(task);
             //task = JSON.parse(task);
             // console.log(task, task.desc);
@@ -111,6 +131,9 @@ function Tasks(props) {
                 className={`tarefa ${task.finished ? 'done' : ''}`}
                 key={task['_id']}
                 data-key={task['_id']}
+                data-pomodoros={task.pomodoros}
+                ref={taskRefs[ref]}
+                onClick={(e) => handleClick(e, ref)}
               >
                 <p>{task.desc}</p>
                 <div className="btn_task">

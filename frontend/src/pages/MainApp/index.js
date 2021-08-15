@@ -55,11 +55,13 @@ export default class MainApp extends React.Component {
     this.setState({
       isPlay: isPlay,
     });
-    if (isPlay === true) {
-      const eng = document.getElementsByClassName('engrenagem')[0];
-      eng.style.visibility = 'hidden';
-    }
+
+    // if (isPlay === true) {
+    //   const eng = document.getElementsByClassName('engrenagem')[0];
+    //   eng.style.visibility = 'hidden';
+    // }
   }
+
   aumentarTempo() {
     this.setState((prevState) => {
       return {
@@ -69,6 +71,7 @@ export default class MainApp extends React.Component {
     });
     this.setTimer();
   }
+
   diminuirTempo() {
     this.setState((prevState) => {
       return {
@@ -115,6 +118,7 @@ export default class MainApp extends React.Component {
       });
     }
   }
+  
   skipTimer() {
     if (this.state.timerMinute !== 0) {
       this.setState({
@@ -184,8 +188,8 @@ export default class MainApp extends React.Component {
   render() {
     return (
       <>
-        <Header />
-        <div className="Timer" id="timerId">
+        <Header isPlay={this.state.isPlay} />
+        {/* <div className="Timer" id="timerId"> */}
           <Timer
             timerMinute={this.state.timerMinute}
             decreaseTimerMinute={this.decreaseTimerMinute}
@@ -195,7 +199,7 @@ export default class MainApp extends React.Component {
             isLong={this.state.isLong}
             skipTimer={this.skipTimer}
           />
-        </div>
+        {/* </div> */}
         <Modal
           pomodoroLength={this.state.pomodoroLength}
           aumentarM={this.aumentarTempo}
@@ -208,8 +212,9 @@ export default class MainApp extends React.Component {
           diminuirDL={this.diminuirTempoDL}
         />
 
-        <Tasks
+        {/* <Tasks
           tasks={this.state.tasks}
+          setTimer={this.setTimer}
           // addTask={(task, po) => {
           //   const input = document.getElementsByClassName('input_tarefa')[0];
           //   if (input.value === '') {
@@ -218,7 +223,7 @@ export default class MainApp extends React.Component {
           //     input.value = '';
           //   }
           // }}
-        />
+        /> */}
       </>
     );
   }
