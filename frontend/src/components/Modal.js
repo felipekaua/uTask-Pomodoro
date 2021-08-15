@@ -52,7 +52,15 @@ function Modal(props) {
   async function saveChanges(e){
     e.preventDefault();
     const userId = localStorage.getItem('user');
-    console.log(userId);
+
+    await api.put('users/findUser', {
+      _id: userId,
+      pomodoro: props.pomodoroLength,
+      short_break: props.ShortRestLength,
+      long_break: props.LongRestLength
+    }).then((res)=>{
+    }).catch(()=>{
+    });
   }
 
   return (

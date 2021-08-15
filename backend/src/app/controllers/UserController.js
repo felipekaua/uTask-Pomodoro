@@ -13,6 +13,23 @@ const User = require('../schemas/User');
 
 class UserController  {
 
+  async getTimes(req, res){
+    const {_id} = req.body;
+    const user = await User.findOne({ _id })
+    res.json(user)
+  }
+
+  async findUser(req, res){
+    const {_id, pomodoro, short_break, long_break} = req.body;
+    console.log(pomodoro);
+    await User.updateOne({ _id: _id},{
+      pomodoro: pomodoro,
+      short_break: short_break,
+      long_break: long_break,
+    })
+    res.send("ok")
+  }
+
   async create(req, res) {
     const {login, password} = req.body;
     const user = new User({

@@ -6,13 +6,14 @@ import Timer from './../../components/Timer';
 import Tasks from './../../components/Tasks';
 import notif from './../../assets/notif.mp3';
 import Header from './../../components/Header'
+import api from './../../services/api'
 
 export default class MainApp extends React.Component {
   constructor() {
     super();
 
     this.state = {
-      pomodoroLength: 15,
+      pomodoroLength: 25,
       ShortRestLength: 5,
       LongRestLength: 15,
       timerMinute: 0,
@@ -21,6 +22,19 @@ export default class MainApp extends React.Component {
       tasks: [],
       audio: new Audio(notif),
     };
+
+    const userId = localStorage.getItem('user');
+        api.post('/users/getTimes',{
+          _id: userId
+        }).then((res)=>{
+          const { pomodoro, short_break, long_break } = res.data;
+
+          this.setState({
+            pomodoroLength: pomodoro,
+            ShortRestLength: short_break,
+            LongRestLength: long_break
+          });
+        })
 
     this.aumentarTempo = this.aumentarTempo.bind(this);
     this.diminuirTempo = this.diminuirTempo.bind(this);
@@ -34,8 +48,6 @@ export default class MainApp extends React.Component {
     this.skipTimer = this.skipTimer.bind(this);
     this.onPlayTimer = this.onPlayTimer.bind(this);
   }
-
-  
 
   onPlayTimer(isPlay) {
     this.setState({
@@ -93,9 +105,8 @@ export default class MainApp extends React.Component {
   }
 
   setTimer() {
-    this.setState({
-      timerMinute: this.state.pomodoroLength,
-    });
+
+    this.state.timerMinute=this.state.pomodoroLength;
 
     if (this.state.isLong !== 0) {
       this.setState({
