@@ -69,36 +69,10 @@ userSchema.pre('save', function (next) {
   });
 });
 
-// userSchema.methods.comparePassword = async function (data) {
-//const teste = await bcrypt.compare(data, this.password);
-// console.log('aaaaaaaaaaaaaaaaa', teste);
-//   return false;
-// };
-
-// userSchema.pre('save', function (next) {
-//   const user = this;
-//   if (!user.isModified('password')) return next();
-
-//   bcrypt.getSalt(SALT_WORK_FACTOR, function (err, salt) {
-//     if (err) return next(err);
-
-//     bcrypt.hash(user.password, salt, function (err, hash) {
-//       if (err) return next(err);
-
-//       user.password = hash;
-//       next();
-//     });
-//   });
-// });
 userSchema.methods.comparePassword = async function (candidatePassword, userP) {
-  //console.log(await bcrypt.compare(candidatePassword, userP));
+
   return await bcrypt.compare(candidatePassword, userP);
 
-  // bcrypt.compare(candidatePassword, userP, function (err, isMatch) {
-  //   console.log(userP, isMatch, err);
-  // if (err) return cb(err);
-  // cb(null, isMatch);
-  //});
 };
 
 module.exports = mongoose.model('User', userSchema);

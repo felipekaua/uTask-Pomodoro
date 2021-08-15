@@ -25,6 +25,4 @@ app.post('/tasks', verifyJWT, TaskController.create);
 app.put('/tasks', verifyJWT, TaskController.update);
 app.delete('/tasks', verifyJWT, TaskController.delete);
 
-//app.use(verifyJWT);
-
 module.exports = app;

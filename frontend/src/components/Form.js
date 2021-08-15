@@ -24,27 +24,17 @@ const Form = (props) => {
   }
 
   function handleUserChange(e) {
+
     disabled(`${e.target.value}`, pw);
     setUser(`${e.target.value}`);
-    // setUser((prevstate) => {
-    //   prevstate = `${e.target.value}`;
-    //   if (prevstate === '') {
-    //     button.disabled = true;
-    //   }
-    //   return prevstate;
-    // });
+
   }
 
   function handlePwChange(e) {
+
     disabled(user, `${e.target.value}`);
     setPw(`${e.target.value}`);
-    // setPw((prevstate) => {
-    //   prevstate = `${e.target.value}`;
-    //   if (prevstate === '') {
-    //     button.disabled = true;
-    //   }
-    //   return prevstate;
-    // });
+
   }
 
   async function handleSubmit(e) {
@@ -58,7 +48,6 @@ const Form = (props) => {
         password: pw,
       })
       .then((res) => {
-        //const { _id } = res.data;
         const { token } = res.data;
         login(token);
         setSuccess(true);
@@ -73,40 +62,7 @@ const Form = (props) => {
       return;
     }
 
-    // login efetuado com sucesso
-    // setSuccess(true);
-    // setTimeout(() => history.push('/pomodoro'), 1500);
   }
-
-  // Acendendo o botão
-  //   function stateHandle(e) {
-  //     const button = document.querySelector('.button');
-  //     e.preventDefault();
-
-  //     if (user !== '') {
-  //       if (pw === '') {
-  //         button.disabled = true;
-  //       }
-  //     }
-
-  //     if (user === '') {
-  //       if (pw !== '') {
-  //         button.disabled = true;
-  //       }
-  //     }
-
-  //     if (user !== '') {
-  //       if (pw === '') {
-  //         button.disabled = true;
-  //       }
-  //     }
-
-  //     if (user !== '') {
-  //       if (pw !== '') {
-  //         button.disabled = false;
-  //       }
-  //     }
-  //   }
 
   function validate(user, pass) {
     if (user === 'errado') return false;
@@ -116,8 +72,6 @@ const Form = (props) => {
     return true;
   }
 
-  //HTML===================================================================================
-  //onChange={stateHandle}
   return (
     <form onSubmit={handleSubmit}>
       <div>
