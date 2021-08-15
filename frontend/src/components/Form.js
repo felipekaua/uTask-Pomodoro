@@ -3,6 +3,7 @@ import './../css/Form.css';
 import { Link, useHistory } from 'react-router-dom';
 import Message from './Message';
 import api from '../services/api';
+import {login} from './../services/auth';
 
 const Form = (props) => {
   const history = useHistory();
@@ -54,11 +55,12 @@ const Form = (props) => {
     await api
       .post('/users/login', {
         login: user,
-        pass: pw,
+        password: pw,
       })
       .then((res) => {
-        const { _id } = res.data;
-        console.log(_id);
+        //const { _id } = res.data;
+        const {token} = res.data;
+        login(token);
         setSuccess(true);
         setTimeout(() => history.push('/pomodoro'), 1500);
       })

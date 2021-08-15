@@ -39,7 +39,7 @@ class UserController {
     const retorno = {
       userId: user.id,
       token: jwt.sign({ id: user.id }, process.env.SECRET, {
-        expiresIn: 600, // 10min fora os ameaço
+        expiresIn: 6400, // 10min fora os ameaço
       }),
     };
     res.send(retorno);
