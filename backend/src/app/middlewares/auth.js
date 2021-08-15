@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 
 const verifyJWT = async (req, res, next) => {
-  const token = req.headers['x-access-token'];
+  // const token = req.headers['x-access-token'];
 
   req.userId = '6116cde152ce332fbc72ebd6';
   // Teste

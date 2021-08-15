@@ -51,18 +51,21 @@ const Form = (props) => {
 
     setError(false);
 
-    await api.post('/users/login',{
-      login: user,
-      pass: pw,
-    }).then((res)=>{
-      const { _id } = res.data;
-      console.log(_id);
-      setSuccess(true);
-      setTimeout(() => history.push('/pomodoro'), 1500);
-    }).catch((res)=>{
-      console.log("something went wrong");
-      setError(true);
-    })
+    await api
+      .post('/users/login', {
+        login: user,
+        pass: pw,
+      })
+      .then((res) => {
+        const { _id } = res.data;
+        console.log(_id);
+        setSuccess(true);
+        setTimeout(() => history.push('/pomodoro'), 1500);
+      })
+      .catch((res) => {
+        console.log('something went wrong');
+        setError(true);
+      });
     if (!validate(user, pw)) {
       setError(true);
       return;

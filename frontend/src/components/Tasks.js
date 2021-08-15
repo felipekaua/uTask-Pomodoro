@@ -12,7 +12,6 @@ function Tasks(props) {
   const { tasks, addTask } = props;
   const [text, setText] = React.useState('');
   const [pom, setPom] = React.useState(1);
-  const [index, setIndex] = React.useState(0);
 
   async function listarTasks() {
     const retorno = await api.get('/tasks');
@@ -21,10 +20,10 @@ function Tasks(props) {
 
   React.useEffect(listarTasks, []);
 
-  function atualizaIndex(prevState) {
-    // setIndex((prevState) => prevState + 1);
-    return prevState;
-  }
+  // function atualizaIndex(prevState) {
+  //   // setIndex((prevState) => prevState + 1);
+  //   return prevState;
+  // }
 
   function aumentarPom(prevState) {
     setPom((prevState) => prevState + 1);
