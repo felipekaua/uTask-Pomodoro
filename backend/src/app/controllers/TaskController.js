@@ -12,8 +12,6 @@ class TaskController {
     const { desc, pomodoros } = req.body;
 
     const user = await User.findOne({ _id: req.userId });
-    console.log('teste');
-    console.log(user);
     user.tasks = [...user.tasks, new Task({ desc, pomodoros })];
 
     try {
@@ -22,21 +20,19 @@ class TaskController {
       res.status(400).send(`Ooops: ${err.message}`);
     }
 
-    res.send(user.taks);
+    res.send(user.tasks);
   }
 
   async update(req, res) {
-    const { id, desc, pomodoros, finished } = req.body;
+    const { _id, desc, pomodoros, finished } = req.body;
 
     const user = await User.findOne({ _id: req.userId });
-    const task = user.tasks.id(id);
+    const task = user.tasks.id(_id);
 
     if (!task) res.status(404).send('Ooops: task not found');
 
     try {
       task.set({
-        desc: desc,
-        pomodoros: pomodoros,
         finished: finished,
       });
 
@@ -45,7 +41,7 @@ class TaskController {
       res.status(400).send(`Ooops: ${err.message}`);
     }
 
-    res.send(user.tasks.id(id));
+    res.send(user.tasks.id(_id));
   }
 
   async delete(req, res) {
@@ -53,7 +49,8 @@ class TaskController {
 
     const user = await User.findOne({ _id: req.userId });
     const task = user.tasks.id(id);
-
+    console.log(id);
+    console.log(req.body);
     if (!task) res.status(404).send('Ooops: task not found');
 
     try {
@@ -64,7 +61,7 @@ class TaskController {
       res.status(400).send(`Ooops: ${err.message}`);
     }
 
-    res.status(201);
+    res.send(user.tasks);
   }
 }
 

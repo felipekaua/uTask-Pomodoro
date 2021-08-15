@@ -9,13 +9,17 @@ import grayPlusSquare from './../assets/grayPlusSquare_ico.png';
 import return_ico from './../assets/return_ico.png';
 
 function Tasks(props) {
-  const { tasks, addTask } = props;
+  const { tasks } = props;
   const [text, setText] = React.useState('');
   const [pom, setPom] = React.useState(1);
+  const [listTask, setListTask] = React.useState([]);
 
   async function listarTasks() {
     const retorno = await api.get('/tasks');
-    console.log(retorno);
+    const arrayTasks = retorno.data.map((task) => task);
+    //console.log(arrayTasks);
+    //setListTask((prevState) => [...prevState, arrayTasks]);
+    setListTask(arrayTasks);
   }
 
   React.useEffect(listarTasks, []);
@@ -25,26 +29,64 @@ function Tasks(props) {
   //   return prevState;
   // }
 
+  async function addTask(task, po) {
+    const input = document.getElementsByClassName('input_tarefa')[0];
+    if (input.value === '') {
+    } else {
+      const save = await api.post('/tasks', {
+        desc: text,
+        pomodoros: pom,
+      });
+      console.log(save);
+      setListTask(save.data);
+      // this.setState({ tasks: [...this.state.tasks, [task, po]] });
+      input.value = '';
+    }
+  }
+
   function aumentarPom(prevState) {
     setPom((prevState) => prevState + 1);
   }
 
   function diminuirPom(prevState) {
-    if (pom > 0) {
+    if (pom > 1) {
       setPom((prevState) => prevState - 1);
     }
   }
 
-  function completeTask(e) {
+  async function saveTask() {
+    // const save = await api.post('/tasks', {
+    //   desc: text,
+    //   pomodoros: pom,
+    // });
+  }
+
+  async function completeTask(e) {
+    const done = await api.put('/tasks', {
+      _id: e.target.parentNode.parentNode.getAttribute('data-key'),
+      finished: true,
+    });
+    // console.log(done);
+    // console.log(e.target.parentNode.parentNode.getAttribute('data-key'));
     e.target.parentNode.parentNode.classList.add('done');
   }
 
-  function retornarTask(e) {
+  async function retornarTask(e) {
+    const retorna = await api.put('/tasks', {
+      _id: e.target.parentNode.parentNode.getAttribute('data-key'),
+      finished: false,
+    });
     e.target.parentNode.parentNode.classList.remove('done');
   }
 
-  function removeTask(e) {
-    console.log(e.target.parentNode.parentNode);
+  async function removeTask(e) {
+    console.log(e.target.parentNode.parentNode.getAttribute('data-key'));
+    const retorna = await api.delete('/tasks', {
+      data: {
+        id: e.target.parentNode.parentNode.getAttribute('data-key'),
+      },
+    });
+    setListTask(retorna.data);
     e.target.parentNode.parentNode.remove();
   }
 
@@ -58,9 +100,46 @@ function Tasks(props) {
       <h1>Tarefas</h1>
 
       <div className="quadro">
-        {tasks.map(([task, po]) => {
+        {listTask &&
+          listTask.map((task) => {
+            // console.log(task);
+            //task = JSON.parse(task);
+            // console.log(task, task.desc);
+            return (
+              <div
+                className={`tarefa ${task.finished ? 'done' : ''}`}
+                key={task['_id']}
+                data-key={task['_id']}
+              >
+                <p>{task.desc}</p>
+                <div className="btn_task">
+                  <img src={redX} alt="" onClick={removeTask}></img>
+
+                  <img
+                    src={greenArrow}
+                    alt=""
+                    onClick={completeTask}
+                    className="greenArrow"
+                  ></img>
+
+                  <img
+                    src={return_ico}
+                    alt=""
+                    className="ret_done"
+                    onClick={retornarTask}
+                  ></img>
+                </div>
+                <span>{task.pomodoros} pom.</span>
+              </div>
+            );
+          })}
+
+        {/* {tasks.map(([task, po]) => {
+          // console.log(task);
+          //task = JSON.parse(task);
+          // console.log(task, task.desc);
           return (
-            <div className="tarefa">
+            <div className="tarefa" key={task['_id']} data-key={task['_id']}>
               <p>{task}</p>
               <div className="btn_task">
                 <img src={redX} alt="" onClick={removeTask}></img>
@@ -82,7 +161,7 @@ function Tasks(props) {
               <span>{po} pom.</span>
             </div>
           );
-        })}
+        })} */}
 
         <div className="clear"></div>
       </div>
@@ -104,7 +183,7 @@ function Tasks(props) {
             </div>
           </div>
 
-          <button type="submit" className="btn_add_taref">
+          <button type="submit" className="btn_add_taref" onClick={saveTask}>
             <img
               src={grayPlusSquare}
               alt=""
@@ -116,5 +195,5 @@ function Tasks(props) {
     </section>
   );
 }
-
+//onClick={saveTask}
 export default Tasks;

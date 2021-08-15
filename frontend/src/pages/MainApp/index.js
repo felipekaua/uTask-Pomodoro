@@ -196,14 +196,14 @@ export default class MainApp extends React.Component {
 
         <Tasks
           tasks={this.state.tasks}
-          addTask={(task, po) => {
-            const input = document.getElementsByClassName('input_tarefa')[0];
-            if (input.value === '') {
-            } else {
-              this.setState({ tasks: [...this.state.tasks, [task, po]] });
-              input.value = '';
-            }
-          }}
+          // addTask={(task, po) => {
+          //   const input = document.getElementsByClassName('input_tarefa')[0];
+          //   if (input.value === '') {
+          //   } else {
+          //     this.setState({ tasks: [...this.state.tasks, [task, po]] });
+          //     input.value = '';
+          //   }
+          // }}
         />
       </>
     );
